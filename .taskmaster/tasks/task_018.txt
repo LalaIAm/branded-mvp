@@ -1,0 +1,31 @@
+# Task ID: 18
+# Title: Create Unified Document Export Service
+# Status: pending
+# Dependencies: 8, 11, 15, 17
+# Priority: medium
+# Description: Develop a unified backend service that can generate and export various brand documents, such as the Strategy Brief and Style Guide, as a professionally formatted PDF.
+# Details:
+Create a single, flexible export endpoint: `GET /api/projects/:id/export?document=<doc_type>`. This service will fetch all necessary data for the specified project from MongoDB. It will then populate a corresponding HTML template (using a library like EJS or Handlebars) with the data. Finally, it will use Puppeteer to render the HTML page in a headless browser and save it as a PDF, which is then streamed to the client for download.
+
+# Test Strategy:
+Create unit tests for the HTML template population logic. Write an integration test for the endpoint that uses mock project data, generates a PDF, and verifies that the resulting file is a valid, non-empty PDF.
+
+# Subtasks:
+## 1. Design Export Service Architecture and Endpoint [pending]
+### Dependencies: None
+### Description: Define the unified export endpoint structure and determine how it will handle different document types (e.g., Strategy Brief, Style Guide). Specify the data flow: fetching project data from MongoDB, selecting the correct HTML template, and integrating with Puppeteer for PDF rendering.
+### Details:
+Document the API contract for GET /api/projects/:id/export?document=<doc_type>. Outline how the service will identify and fetch all required project data, and how it will select and populate the appropriate HTML template for each document type.
+
+## 2. Implement Data Fetching and Template Population Logic [pending]
+### Dependencies: 18.1
+### Description: Develop the backend logic to retrieve all necessary project data from MongoDB and populate the corresponding HTML template using a templating engine such as EJS or Handlebars.
+### Details:
+Ensure the service can handle multiple document types by dynamically selecting and populating the correct template. Write unit tests to verify that the template population logic correctly reflects the input data for each document type.
+
+## 3. Integrate PDF Generation and Streaming [pending]
+### Dependencies: 18.2
+### Description: Use Puppeteer to render the populated HTML template in a headless browser and generate a professionally formatted PDF. Stream the resulting PDF file to the client for download via the export endpoint.
+### Details:
+Implement the PDF generation workflow, ensuring error handling for rendering failures. Write integration tests to verify that the endpoint returns a valid, non-empty PDF for various document types and project data scenarios.
+

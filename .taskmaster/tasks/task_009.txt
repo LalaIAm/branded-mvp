@@ -1,0 +1,31 @@
+# Task ID: 9
+# Title: Build Persona Creation UI
+# Status: pending
+# Dependencies: 7, 8
+# Priority: high
+# Description: Develop the user interface for the persona creation tool, including input forms for audience data and a visually appealing display for the AI-generated persona cards.
+# Details:
+Create a React component with a form for users to input audience characteristics. On submission, call the `POST /api/projects/:id/persona` endpoint and display a loading state. Once the data is returned, render the personas as distinct, well-designed cards using Tailwind CSS. Each card should clearly present the persona's name, photo (can be a stock icon initially), demographics, and psychographics.
+
+# Test Strategy:
+Use React Testing Library to test the form and the rendering of persona cards from mock data. Use Cypress to test the full user flow: filling out the form, submitting, seeing a loading state, and then viewing the generated persona card.
+
+# Subtasks:
+## 1. Design Persona Creation Form UI [pending]
+### Dependencies: None
+### Description: Create a React component with a form for users to input audience characteristics such as demographics, goals, and pain points. Ensure the form is user-friendly and visually appealing using Tailwind CSS.
+### Details:
+The form should include fields for persona name, photo (stock icon), demographics, psychographics, and other relevant audience data. Use clear labels and validation feedback to guide users.
+
+## 2. Integrate API and Loading State [pending]
+### Dependencies: 9.1
+### Description: Implement logic to submit the form data to the `POST /api/projects/:id/persona` endpoint and display a loading state while awaiting the AI-generated persona data.
+### Details:
+On form submission, disable the form and show a loading spinner or message. Handle API responses and errors gracefully, providing feedback to the user.
+
+## 3. Render AI-Generated Persona Cards [pending]
+### Dependencies: 9.2
+### Description: Display the returned persona data as distinct, well-designed cards. Each card should clearly present the persona's name, photo, demographics, and psychographics using Tailwind CSS.
+### Details:
+Ensure each card is visually distinct and memorable, using bold color schemes and clear layout. Include all relevant persona details and make the cards easy to scan and understand.
+

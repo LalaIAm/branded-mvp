@@ -1,0 +1,43 @@
+# Task ID: 20
+# Title: Implement Project Archive and Duplicate Functionality
+# Status: pending
+# Dependencies: 6, 19
+# Priority: medium
+# Description: Add API endpoints and UI controls to allow users to archive a completed project (hiding it from the main view) or duplicate an existing project to start a new one from a template.
+# Details:
+Backend: Implement a `PATCH /api/projects/:id/archive` endpoint to set an `isArchived: true` flag on the project document. Implement a `POST /api/projects/:id/duplicate` endpoint that performs a deep copy of the project document, creating a new project for the user with a name like 'Copy of...'. Frontend: Add 'Archive' and 'Duplicate' buttons to the project summary dashboard and/or the main dashboard project list.
+
+# Test Strategy:
+Write integration tests for the archive and duplicate endpoints. Verify that archiving correctly flags the project and that duplication creates a new, independent copy of the project data.
+
+# Subtasks:
+## 1. Archive Endpoint Implementation [pending]
+### Dependencies: None
+### Description: Develop the backend API endpoint (PATCH /api/projects/:id/archive) to set the isArchived flag to true on the project document, ensuring the project is hidden from the main view.
+### Details:
+Implement logic to update the project document in the database, set isArchived: true, and ensure proper error handling and permissions.
+
+## 2. Duplicate Endpoint Implementation [pending]
+### Dependencies: 20.1
+### Description: Create the backend API endpoint (POST /api/projects/:id/duplicate) that performs a deep copy of the project document, generating a new project with a modified name (e.g., 'Copy of...').
+### Details:
+Ensure all relevant project data is duplicated, assign a new unique ID, and handle any references or nested data to maintain data integrity.
+
+## 3. Frontend Controls for Archive and Duplicate [pending]
+### Dependencies: 20.1, 20.2
+### Description: Add 'Archive' and 'Duplicate' buttons to the project summary dashboard and/or main dashboard project list in the frontend application.
+### Details:
+Implement UI controls that trigger the respective API endpoints, provide user feedback (e.g., loading states, success/error messages), and ensure accessibility.
+
+## 4. UI Updates to Reflect Archived and Duplicated Projects [pending]
+### Dependencies: 20.3
+### Description: Update the frontend to visually distinguish archived projects (e.g., hide from main list, show in archived view) and display newly duplicated projects appropriately.
+### Details:
+Implement logic to filter archived projects from the main view, add an archived projects section if needed, and ensure duplicated projects appear with the correct naming and data.
+
+## 5. Integration and Testing [pending]
+### Dependencies: 20.4
+### Description: Write and execute integration tests for both archive and duplicate endpoints, and verify frontend behavior for archiving and duplicating projects.
+### Details:
+Test backend endpoints for correct state changes and data integrity, and ensure frontend correctly reflects changes and handles edge cases (e.g., errors, permissions).
+

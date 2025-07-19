@@ -1,0 +1,31 @@
+# Task ID: 5
+# Title: Implement Password Reset Functionality
+# Status: pending
+# Dependencies: 2
+# Priority: medium
+# Description: Develop the complete workflow for a user to reset their forgotten password, including requesting a reset link via email, validating the link, and submitting a new password.
+# Details:
+Create a `POST /api/auth/request-password-reset` endpoint that generates a secure, time-limited reset token (e.g., a JWT with a short expiry) and emails a reset link to the user. Use a service like Nodemailer. Create a `POST /api/auth/reset-password` endpoint that validates the token from the link and updates the user's hashed password in MongoDB. The frontend will have a form to request the reset and another form (at the reset link's URL) to enter the new password.
+
+# Test Strategy:
+Test both API endpoints for success and failure cases (e.g., user not found, expired token). Conduct an end-to-end test: request a reset, (mock) receive the email, click the link, set a new password, and log in successfully with it.
+
+# Subtasks:
+## 1. Implement Password Reset Request Endpoint [pending]
+### Dependencies: None
+### Description: Develop the backend endpoint to handle password reset requests. This endpoint should verify the user's email, generate a secure, time-limited reset token (e.g., using crypto or JWT), store a hashed version of the token in the database, and send a reset link to the user's email using a service like Nodemailer.
+### Details:
+Create POST /api/auth/request-password-reset. Ensure the token is securely generated and hashed before saving. Integrate with an email service to deliver the reset link containing the token to the user.
+
+## 2. Implement Password Reset Submission Endpoint [pending]
+### Dependencies: 5.1
+### Description: Develop the backend endpoint to handle password reset submissions. This endpoint should validate the reset token from the link, ensure it has not expired, and allow the user to set a new password. The new password must be securely hashed before updating the user's record in the database. Invalidate the token after use.
+### Details:
+Create POST /api/auth/reset-password. Validate the token, hash the new password, update the user's password in MongoDB, and delete or invalidate the used token.
+
+## 3. Develop and Test Frontend Password Reset Workflow [pending]
+### Dependencies: 5.1, 5.2
+### Description: Build the frontend forms for requesting a password reset and for submitting a new password via the reset link. Integrate these forms with the backend endpoints. Test the complete workflow, including error handling for invalid or expired tokens and successful password resets.
+### Details:
+Create a form for users to request a reset link and another for entering a new password. Ensure proper user feedback for all success and failure scenarios. Perform end-to-end testing of the entire password reset process.
+

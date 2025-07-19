@@ -1,0 +1,1211 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Project and Configure Development Environment",
+        "description": "Set up the project repository for the Brand Builder application, including frontend (React) and backend (Node.js). Configure essential tooling like ESLint, Prettier, Docker, and environment variables to ensure a consistent and efficient development workflow.",
+        "details": "Initialize a Git repository. Create a standard folder structure for a monorepo or separate repos. In the backend, set up a Node.js server with Express. In the frontend, initialize a React application using Create React App or Vite. Add ESLint and Prettier configurations to enforce code style. Create a `docker-compose.yml` file to orchestrate Node.js, MongoDB, and Redis containers for local development. Define environment variable handling using `.env` files.",
+        "testStrategy": "Verify that `npm run dev` (or equivalent) starts both frontend and backend services. Confirm that linting and formatting scripts run correctly on pre-commit hooks (if using Husky). Ensure Docker containers build and run without errors.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Git Repository Initialization and Folder Structure",
+            "description": "Initialize a new Git repository and establish a clear folder structure for both frontend and backend components, supporting a monorepo or separate repositories as needed.",
+            "dependencies": [],
+            "details": "Run `git init` in the project root. Create directories such as `/backend` for Node.js/Express and `/frontend` for React. Add a `.gitignore` file to exclude node_modules, build artifacts, and environment files.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Backend (Node.js/Express) Setup",
+            "description": "Set up the backend using Node.js and Express, including initial configuration, entry point, and basic routing.",
+            "dependencies": [1],
+            "details": "Navigate to `/backend`, run `npm init -y`, and install Express. Create `server.js` or `app.js` as the entry point. Set up a basic Express server and define a sample route. Organize code into folders like `/routes`, `/controllers`, and `/config` for scalability.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Frontend (React) Setup",
+            "description": "Initialize the frontend using React, setting up the development environment and folder structure.",
+            "dependencies": [1],
+            "details": "Navigate to `/frontend` and run `npx create-react-app .` or use Vite for a faster setup. Ensure the folder structure supports components, pages, and assets. Verify the app runs with `npm start`.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "ESLint and Prettier Configuration",
+            "description": "Configure ESLint and Prettier for both frontend and backend to enforce consistent code style and formatting.",
+            "dependencies": [2, 3],
+            "details": "Install ESLint and Prettier in both `/backend` and `/frontend`. Initialize ESLint with `npx eslint --init` and create `.eslintrc` and `.prettierrc` files. Add lint and format scripts to `package.json`.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Docker and docker-compose Setup for Node.js, MongoDB, and Redis",
+            "description": "Create Dockerfiles and a docker-compose configuration to orchestrate Node.js backend, MongoDB, and Redis containers for local development.",
+            "dependencies": [2],
+            "details": "Write a `Dockerfile` for the backend. Create a `docker-compose.yml` in the project root to define services for Node.js, MongoDB, and Redis. Configure volumes and environment variables for each service.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Environment Variable Management with .env Files",
+            "description": "Set up environment variable management using `.env` files for both backend and frontend, ensuring sensitive data is not committed to version control.",
+            "dependencies": [2, 3, 5],
+            "details": "Create `.env` files in `/backend` and `/frontend` for storing environment-specific variables. Use libraries like `dotenv` in Node.js to load variables. Add `.env` to `.gitignore`.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Pre-commit Hooks (e.g., Husky) for Linting/Formatting",
+            "description": "Configure pre-commit hooks using Husky to automatically run linting and formatting scripts before commits.",
+            "dependencies": [4],
+            "details": "Install Husky in the project root. Set up hooks to run `npm run lint` and `npm run format` on staged files before each commit. Verify hooks are triggered during the commit process.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Implement User Registration and Login API",
+        "description": "Create backend endpoints for user registration (email/password) and login. This includes secure password hashing, JWT generation for session management, and storing user data in the MongoDB database.",
+        "details": "Define a `User` schema in MongoDB using Mongoose, including fields for `email`, `password` (to store the hash), and timestamps. Implement a `POST /api/auth/register` endpoint that validates input, checks for existing users, hashes the password using `bcrypt`, and saves the new user. Implement a `POST /api/auth/login` endpoint that validates credentials, compares the password hash with `bcrypt.compare`, and issues a signed JSON Web Token (JWT) on success.",
+        "testStrategy": "Use an API testing tool like Supertest to write integration tests. Cover successful registration, duplicate email error, successful login, login with wrong password, and validation errors for invalid email/password formats.",
+        "priority": "high",
+        "dependencies": [1],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define User Schema/Model",
+            "description": "Create a Mongoose schema for the User, including fields for email, password (hashed), and timestamps.",
+            "dependencies": [],
+            "details": "Use Mongoose to define a User model with required fields: email (unique, validated), password (hashed), and timestamps for creation and updates.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Registration Endpoint with Validation and Password Hashing",
+            "description": "Develop the POST /api/auth/register endpoint to handle user registration, including input validation and secure password hashing.",
+            "dependencies": [1],
+            "details": "Validate input (email format, password strength), check for existing users, hash the password using bcrypt, and save the new user to MongoDB. Return appropriate success or error responses.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Login Endpoint with Credential Validation and JWT Issuance",
+            "description": "Develop the POST /api/auth/login endpoint to authenticate users and issue a JWT upon successful login.",
+            "dependencies": [1],
+            "details": "Validate input, find the user by email, compare the provided password with the stored hash using bcrypt, and issue a signed JWT if credentials are valid. Return error responses for invalid credentials.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Error Handling for Registration and Login",
+            "description": "Add robust error handling for both registration and login endpoints to cover validation errors, duplicate users, and authentication failures.",
+            "dependencies": [2, 3],
+            "details": "Ensure all error cases (e.g., missing fields, invalid formats, duplicate email, wrong password) return clear and secure error messages with appropriate HTTP status codes.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate with MongoDB",
+            "description": "Set up MongoDB connection and ensure all user data is stored and retrieved securely using Mongoose.",
+            "dependencies": [1, 2, 3, 4],
+            "details": "Configure MongoDB connection (e.g., using environment variables), and verify that registration and login endpoints interact correctly with the database.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Write Automated Tests for All Scenarios",
+            "description": "Develop automated integration tests covering registration, login, error cases, and edge scenarios.",
+            "dependencies": [2, 3, 4, 5],
+            "details": "Use a testing framework (e.g., Jest, Supertest) to write tests for successful registration, duplicate email, successful login, invalid credentials, and input validation errors.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Implement JWT-based Secure Route Middleware",
+        "description": "Create a middleware for the Node.js backend to protect routes by validating the JWT provided in the HTTP Authorization header, ensuring only authenticated users can access protected resources.",
+        "details": "Create an Express middleware function that extracts the token from the `Authorization: Bearer <token>` header. Use the `jsonwebtoken` library to verify the token's signature and expiration against the secret key. If the token is valid, attach the decoded user payload (e.g., `userId`) to the `req` object for use in subsequent handlers. If the token is invalid or missing, respond with a 401 Unauthorized status.",
+        "testStrategy": "Write integration tests for a sample protected endpoint. Test cases should include requests with a valid token, an invalid token, an expired token, and no token, verifying the correct HTTP status code is returned for each.",
+        "priority": "high",
+        "dependencies": [2],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Middleware Structure and Token Extraction",
+            "description": "Define the Express middleware function that will extract the JWT from the Authorization header in the format 'Bearer <token>'. Ensure the middleware handles missing or malformed headers gracefully.",
+            "dependencies": [],
+            "details": "Create a new file (e.g., middleware/authenticate.js). The middleware should check for the presence of the Authorization header, split it to extract the token, and handle cases where the header or token is missing by responding with a 401 Unauthorized status.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement JWT Verification and User Payload Attachment",
+            "description": "Use the jsonwebtoken library to verify the extracted token's signature and expiration against the secret key. If valid, attach the decoded user payload to the req object for downstream handlers.",
+            "dependencies": [1],
+            "details": "Call jwt.verify(token, process.env.JWT_SECRET) inside a try-catch block. On success, assign the decoded payload (e.g., userId) to req.user. On failure (invalid or expired token), respond with a 401 Unauthorized status and an appropriate error message.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate Middleware and Write Integration Tests",
+            "description": "Apply the middleware to protected routes in the Express app and write integration tests covering valid, invalid, expired, and missing token scenarios.",
+            "dependencies": [2],
+            "details": "Add the middleware to one or more protected endpoints (e.g., app.get('/protected', authenticate, ...)). Write integration tests that send requests with different token states, verifying that the correct HTTP status codes and responses are returned for each case.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Build Frontend Authentication UI and State Management",
+        "description": "Develop the React components for the landing page, registration form, and login form. Implement global state management to handle user authentication status and persist the session.",
+        "details": "Build responsive UI components for Signup and Login using React and style them with Tailwind CSS and Heroicons. Use React Router for navigation. Implement a global state solution (e.g., React Context API with hooks) to manage authentication state (user data, token). On successful login/registration, store the JWT in `localStorage` and update the global context. Implement a logout feature that clears the token and state.",
+        "testStrategy": "Use React Testing Library to unit test form components, including input handling and validation feedback. Mock API calls with a library like `msw` or `jest.mock` to test UI behavior on success and error states. Use Cypress for end-to-end testing of the complete signup, login, and logout user flows.",
+        "priority": "high",
+        "dependencies": [2],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop Authentication UI Components",
+            "description": "Create responsive React components for the landing page, registration (signup) form, and login form. Style these components using Tailwind CSS and Heroicons. Ensure forms handle user input, display validation errors, and provide feedback for both success and error states.",
+            "dependencies": [],
+            "details": "Implement input fields for email and password, validation logic (e.g., using zod or similar), and error display. Use React Router to navigate between landing, signup, and login pages. Ensure accessibility and responsive design.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Global Authentication State Management",
+            "description": "Set up a global state management solution using React Context API and hooks to manage authentication status, user data, and JWT token. Ensure the authentication state is accessible throughout the app and persists sessions using localStorage.",
+            "dependencies": [1],
+            "details": "Create an AuthContext and Provider to wrap the app. Implement functions for sign up, sign in, and sign out within the context. On successful authentication, store the JWT in localStorage and update the context. Provide a logout function that clears the token and resets state.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Authentication UI and State Management",
+            "description": "Write unit and end-to-end tests for the authentication UI and state management. Use React Testing Library for component and form validation tests, and Cypress for full user flow (signup, login, logout). Mock API calls to test UI behavior on success and error.",
+            "dependencies": [2],
+            "details": "Test input handling, validation feedback, and state updates. Ensure that authentication state persists across reloads and that logout clears all relevant data. Verify navigation and protected route access based on authentication state.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Implement Password Reset Functionality",
+        "description": "Develop the complete workflow for a user to reset their forgotten password, including requesting a reset link via email, validating the link, and submitting a new password.",
+        "details": "Create a `POST /api/auth/request-password-reset` endpoint that generates a secure, time-limited reset token (e.g., a JWT with a short expiry) and emails a reset link to the user. Use a service like Nodemailer. Create a `POST /api/auth/reset-password` endpoint that validates the token from the link and updates the user's hashed password in MongoDB. The frontend will have a form to request the reset and another form (at the reset link's URL) to enter the new password.",
+        "testStrategy": "Test both API endpoints for success and failure cases (e.g., user not found, expired token). Conduct an end-to-end test: request a reset, (mock) receive the email, click the link, set a new password, and log in successfully with it.",
+        "priority": "medium",
+        "dependencies": [2],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Password Reset Request Endpoint",
+            "description": "Develop the backend endpoint to handle password reset requests. This endpoint should verify the user's email, generate a secure, time-limited reset token (e.g., using crypto or JWT), store a hashed version of the token in the database, and send a reset link to the user's email using a service like Nodemailer.",
+            "dependencies": [],
+            "details": "Create POST /api/auth/request-password-reset. Ensure the token is securely generated and hashed before saving. Integrate with an email service to deliver the reset link containing the token to the user.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Password Reset Submission Endpoint",
+            "description": "Develop the backend endpoint to handle password reset submissions. This endpoint should validate the reset token from the link, ensure it has not expired, and allow the user to set a new password. The new password must be securely hashed before updating the user's record in the database. Invalidate the token after use.",
+            "dependencies": [1],
+            "details": "Create POST /api/auth/reset-password. Validate the token, hash the new password, update the user's password in MongoDB, and delete or invalidate the used token.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Develop and Test Frontend Password Reset Workflow",
+            "description": "Build the frontend forms for requesting a password reset and for submitting a new password via the reset link. Integrate these forms with the backend endpoints. Test the complete workflow, including error handling for invalid or expired tokens and successful password resets.",
+            "dependencies": [1, 2],
+            "details": "Create a form for users to request a reset link and another for entering a new password. Ensure proper user feedback for all success and failure scenarios. Perform end-to-end testing of the entire password reset process.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Create API for Project CRUD Operations",
+        "description": "Implement backend RESTful API endpoints for creating, reading, updating, and deleting brand projects. All project data should be associated with the authenticated user.",
+        "details": "Define a `Project` schema in MongoDB. It should reference a `userId` and contain fields for `projectName`, timestamps, and nested objects for each phase's data (e.g., `audienceResearch`, `brandStrategy`). Implement the following protected endpoints: `POST /api/projects`, `GET /api/projects`, `GET /api/projects/:id`, `PUT /api/projects/:id`, and `DELETE /api/projects/:id`. Ensure all queries are scoped to the `userId` from the JWT middleware.",
+        "testStrategy": "Write integration tests for all CRUD endpoints. Key tests should verify that a user can only access their own projects and receives a 403 or 404 error when attempting to access projects belonging to other users.",
+        "priority": "high",
+        "dependencies": [3],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Project Schema/Model",
+            "description": "Design and implement the MongoDB schema for the Project entity, including fields for userId, projectName, timestamps, and nested objects for each project phase (e.g., audienceResearch, brandStrategy). Ensure the schema supports efficient querying and future scalability.",
+            "dependencies": [],
+            "details": "Follow MongoDB schema design best practices such as embedding nested phase data and referencing userId. Add appropriate indexes for userId and projectName to optimize queries.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Create Project Endpoint",
+            "description": "Develop the POST /api/projects endpoint to allow authenticated users to create new projects. Ensure the created project is associated with the userId from the JWT.",
+            "dependencies": [1],
+            "details": "Validate request body, create a new project document in MongoDB, and return the created project. Handle errors for invalid input or database issues.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Read/List Projects Endpoint",
+            "description": "Develop the GET /api/projects and GET /api/projects/:id endpoints to allow users to list all their projects or retrieve a specific project by ID. Ensure only projects belonging to the authenticated user are accessible.",
+            "dependencies": [1],
+            "details": "Query the database for projects where userId matches the authenticated user. Return 404 or 403 if the project does not exist or does not belong to the user.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Update Project Endpoint",
+            "description": "Develop the PUT /api/projects/:id endpoint to allow users to update their own projects. Ensure only the owner can update the project and validate input data.",
+            "dependencies": [1, 3],
+            "details": "Check project ownership before updating. Validate and sanitize input. Update the project document and return the updated project or appropriate error.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Delete Project Endpoint",
+            "description": "Develop the DELETE /api/projects/:id endpoint to allow users to delete their own projects. Ensure only the owner can delete the project.",
+            "dependencies": [1, 3],
+            "details": "Verify project ownership before deletion. Remove the project document from MongoDB and return a success response or appropriate error.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Enforce Access Control and User Scoping",
+            "description": "Integrate access control logic into all project endpoints to ensure only authenticated users can access their own projects. Use the userId from the JWT for scoping.",
+            "dependencies": [2, 3, 4, 5],
+            "details": "Apply JWT middleware to all endpoints. For each request, ensure queries and mutations are scoped to the authenticated user's userId. Return 403 or 404 errors for unauthorized access attempts.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Build User Dashboard for Project Management",
+        "description": "Develop the main user dashboard UI where users can view a list of their existing projects, create new projects, and select a project to begin or continue working on.",
+        "details": "Create a `Dashboard` React component that is the main view after login. Use a `useEffect` hook to fetch the user's projects from the `GET /api/projects` endpoint and display them as a grid of cards. Each card should show project details and be a link to that project's workspace. Include a prominent 'Create New Project' button that triggers a modal form to call the `POST /api/projects` endpoint.",
+        "testStrategy": "Use React Testing Library to test the rendering of the project list from mock data. Test the new project creation modal and form submission. Use Cypress for an E2E test of creating a new project and verifying it appears on the dashboard.",
+        "priority": "high",
+        "dependencies": [4, 6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Dashboard Route and Component Setup",
+            "description": "Create the main Dashboard route and React component as the primary view after user login. Ensure it is accessible via routing and serves as the container for project management features.",
+            "dependencies": [],
+            "details": "Set up a new route (e.g., '/dashboard') in React Router. Implement a Dashboard component that will later fetch and display the user's projects.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Fetch and Display Project List",
+            "description": "Implement logic to fetch the user's project list from the backend and render it in the Dashboard component.",
+            "dependencies": [1],
+            "details": "Use the useEffect hook to call the GET /api/projects endpoint on component mount. Store the project data in state and render each project as a card or list item.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Project Card UI and Navigation",
+            "description": "Design and implement the UI for individual project cards, including navigation to each project's workspace.",
+            "dependencies": [2],
+            "details": "Create a reusable ProjectCard component that displays project details. Make each card clickable, navigating to the corresponding project workspace route (e.g., '/projects/:projectId').",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create New Project Modal/Form",
+            "description": "Add a 'Create New Project' button to the dashboard that opens a modal with a form for project creation.",
+            "dependencies": [2],
+            "details": "Implement a modal dialog containing a form for new project details. On submission, call the POST /api/projects endpoint and update the project list on success.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integration with Backend Endpoints",
+            "description": "Ensure all dashboard features are fully integrated with backend API endpoints for project retrieval and creation.",
+            "dependencies": [2, 3, 4],
+            "details": "Verify that GET /api/projects and POST /api/projects are correctly called and handled. Ensure error states and loading indicators are managed appropriately.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Implement Persona Creation API with AI Assistance",
+        "description": "Create an API endpoint that accepts user input about their target audience and leverages the OpenAI GPT-4 API to generate detailed, structured customer personas.",
+        "details": "Implement a `POST /api/projects/:id/persona` endpoint. The request body will contain user-provided data like demographics, goals, and pain points. The backend service will construct a detailed prompt for the OpenAI API, execute the API call, parse the structured JSON response, and save the generated persona data into the correct project document in MongoDB.",
+        "testStrategy": "Write an integration test for the endpoint, mocking the OpenAI API call to ensure predictable results and avoid costs. Verify that the user input is correctly formatted into a prompt and that the parsed AI response is saved to the correct project in the database.",
+        "priority": "high",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Persona Creation API Endpoint",
+            "description": "Define the API contract and implement the POST /api/projects/:id/persona endpoint to accept user input for persona generation.",
+            "dependencies": [],
+            "details": "Specify the expected request body schema (demographics, goals, pain points, etc.). Set up input validation and ensure the endpoint is secured. Prepare the backend route and controller structure for handling persona creation requests.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate OpenAI GPT-4 for Persona Generation",
+            "description": "Implement the logic to construct a detailed prompt from user input, call the OpenAI GPT-4 API, and parse the structured persona response.",
+            "dependencies": [1],
+            "details": "Use the OpenAI Node.js SDK to send a prompt to GPT-4 based on the received user data. Ensure the prompt requests a structured JSON persona. Parse the AI response and handle errors gracefully. Mock the OpenAI API in tests to avoid real calls.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Persist Generated Persona and Write Integration Tests",
+            "description": "Save the parsed persona data to the correct project document in MongoDB and implement integration tests for the endpoint.",
+            "dependencies": [2],
+            "details": "Update the relevant project document with the new persona data. Write integration tests that mock the AI call, verify prompt formatting, and confirm persona data is saved correctly. Ensure tests cover both success and failure scenarios.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Build Persona Creation UI",
+        "description": "Develop the user interface for the persona creation tool, including input forms for audience data and a visually appealing display for the AI-generated persona cards.",
+        "details": "Create a React component with a form for users to input audience characteristics. On submission, call the `POST /api/projects/:id/persona` endpoint and display a loading state. Once the data is returned, render the personas as distinct, well-designed cards using Tailwind CSS. Each card should clearly present the persona's name, photo (can be a stock icon initially), demographics, and psychographics.",
+        "testStrategy": "Use React Testing Library to test the form and the rendering of persona cards from mock data. Use Cypress to test the full user flow: filling out the form, submitting, seeing a loading state, and then viewing the generated persona card.",
+        "priority": "high",
+        "dependencies": [7, 8],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Persona Creation Form UI",
+            "description": "Create a React component with a form for users to input audience characteristics such as demographics, goals, and pain points. Ensure the form is user-friendly and visually appealing using Tailwind CSS.",
+            "dependencies": [],
+            "details": "The form should include fields for persona name, photo (stock icon), demographics, psychographics, and other relevant audience data. Use clear labels and validation feedback to guide users.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate API and Loading State",
+            "description": "Implement logic to submit the form data to the `POST /api/projects/:id/persona` endpoint and display a loading state while awaiting the AI-generated persona data.",
+            "dependencies": [1],
+            "details": "On form submission, disable the form and show a loading spinner or message. Handle API responses and errors gracefully, providing feedback to the user.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Render AI-Generated Persona Cards",
+            "description": "Display the returned persona data as distinct, well-designed cards. Each card should clearly present the persona's name, photo, demographics, and psychographics using Tailwind CSS.",
+            "dependencies": [2],
+            "details": "Ensure each card is visually distinct and memorable, using bold color schemes and clear layout. Include all relevant persona details and make the cards easy to scan and understand.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Implement Competitor Analysis API with Web Scraping",
+        "description": "Create an API that takes a list of competitor URLs, uses Puppeteer for basic web scraping, and then leverages OpenAI to summarize their positioning, tone, and offerings.",
+        "details": "Implement a `POST /api/projects/:id/competitors` endpoint. The backend service will iterate through the provided URLs. For each URL, it will launch a Puppeteer instance to scrape key text content from the page (e.g., from `<h1>`, `<p>`, and `<meta>` tags). This scraped text will be compiled and sent to the OpenAI API with a prompt asking for a summary of the competitor's brand strategy. The results will be saved to the project document.",
+        "testStrategy": "Integration tests should mock the Puppeteer scraping process to avoid network dependencies and flakiness. Mock the OpenAI API call. The test should focus on verifying that the service correctly processes a list of URLs and saves the structured summary data to the database.",
+        "priority": "medium",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop Web Scraping Module Using Puppeteer",
+            "description": "Implement a service that accepts a list of competitor URLs and uses Puppeteer to scrape key text content from each page, specifically targeting <h1>, <p>, and <meta> tags.",
+            "dependencies": [],
+            "details": "The module should efficiently launch Puppeteer instances, extract relevant text content, and handle errors such as inaccessible pages or timeouts. Ensure the scraped data is structured for downstream processing.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate OpenAI Summarization for Competitor Insights",
+            "description": "Send the compiled text content from each competitor's page to the OpenAI API with a prompt designed to summarize brand positioning, tone, and offerings.",
+            "dependencies": [1],
+            "details": "Design prompts that elicit concise summaries of each competitor's brand strategy. Parse and structure the OpenAI responses for consistent storage. Handle API rate limits and errors gracefully.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement API Endpoint and Data Persistence",
+            "description": "Create the POST /api/projects/:id/competitors endpoint that orchestrates the scraping and summarization workflow, then saves the structured competitor analysis results to the project document in the database.",
+            "dependencies": [2],
+            "details": "Ensure the endpoint validates input, manages asynchronous processing for multiple URLs, and updates the project document with the summarized competitor data. Write integration tests that mock Puppeteer and OpenAI calls to verify correct data flow and persistence.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Implement Mission and Vision Wizard API",
+        "description": "Create an API for an interactive wizard that guides users through defining their brand's mission and vision, using AI to help draft the final statements based on their input.",
+        "details": "Implement a `POST /api/projects/:id/strategy` endpoint. The request body will contain user answers to foundational questions (e.g., 'What problem do you solve?'). The backend will use OpenAI GPT-4 with a specifically engineered prompt (e.g., based on the 'Golden Circle' framework) to generate concise and impactful mission and vision statements. The generated drafts are then saved to the project document in MongoDB.",
+        "testStrategy": "Write an integration test for the endpoint, mocking the OpenAI API call. The test should verify that user inputs are correctly incorporated into the AI prompt and that the resulting statements are saved to the correct project.",
+        "priority": "high",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design API Endpoint and Data Flow",
+            "description": "Define the structure and validation for the POST /api/projects/:id/strategy endpoint. Specify the expected request body schema for user answers, and outline the response format for generated mission and vision statements. Ensure the endpoint integrates with the project document in MongoDB for saving results.",
+            "dependencies": [],
+            "details": "Clarify which foundational questions are required, how user input will be validated, and how the endpoint will handle errors. Document the expected JSON structure for both requests and responses.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate OpenAI GPT-4 for Statement Generation",
+            "description": "Implement backend logic to process user answers, construct a prompt using the 'Golden Circle' framework, and call the OpenAI GPT-4 API to generate mission and vision statements. Parse and validate the AI response, then save the drafts to the appropriate project document in MongoDB.",
+            "dependencies": [1],
+            "details": "Use the OpenAI SDK for Node.js to send requests to the GPT-4 model. Ensure the prompt is engineered to elicit concise, impactful statements. Handle API errors and ensure the AI output is correctly mapped to the project schema.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Write Integration Test with Mocked OpenAI API",
+            "description": "Develop an integration test for the mission and vision wizard endpoint. Mock the OpenAI API call to ensure tests are deterministic. Verify that user inputs are correctly incorporated into the AI prompt and that the generated statements are saved to the correct project document in MongoDB.",
+            "dependencies": [2],
+            "details": "Test both successful and failure scenarios, including invalid input and API errors. Confirm that the endpoint updates the project document as expected and returns the correct response to the client.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Build Mission and Vision Wizard UI",
+        "description": "Develop the multi-step form (wizard) UI that guides the user through the process of defining their brand's mission and vision, and displays the AI-generated drafts for editing.",
+        "details": "Create a multi-step React component to act as the wizard. Each step will present a question to the user. Use a state management library or component state to hold the answers. After the final step, submit all answers to the `POST /api/projects/:id/strategy` endpoint. Display the AI-generated drafts in editable `<textarea>` elements, allowing the user to refine and save the final versions.",
+        "testStrategy": "Use React Testing Library to test the wizard flow, including navigation between steps, state updates, and the final submission. Test the display and editing of the AI-generated drafts.",
+        "priority": "high",
+        "dependencies": [7, 11],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Multi-Step Wizard UI Structure",
+            "description": "Define the step sequence, questions, and layout for the mission and vision wizard. Specify the user flow, including navigation (next, previous), progress indicators, and where AI-generated drafts will be displayed for editing.",
+            "dependencies": [],
+            "details": "Create wireframes or a component structure outline for the wizard. List each step's purpose and the data to collect. Decide how to visually separate steps and how users will interact with AI-generated drafts (e.g., editable textareas).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Multi-Step Wizard Component in React",
+            "description": "Develop the React multi-step form component, managing state across steps and integrating navigation. Ensure each step collects user input and stores it in a central state, using a state management solution or component state.",
+            "dependencies": [1],
+            "details": "Use libraries such as React Hook Form and Zod for form handling and validation. Implement step transitions, progress tracking, and state persistence. Ensure the component is modular and testable, following best practices for maintainability and scalability[1][2][3].",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate API and Editable AI-Generated Drafts",
+            "description": "Connect the wizard's final step to the backend API to submit user answers and retrieve AI-generated mission and vision drafts. Display these drafts in editable fields, allowing users to refine and save their final statements.",
+            "dependencies": [2],
+            "details": "On final step submission, call the POST /api/projects/:id/strategy endpoint. Render the returned drafts in <textarea> elements for editing. Implement save functionality for the refined statements. Ensure error handling and loading states are user-friendly.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Implement AI Brand Name Generator API",
+        "description": "Create an API that generates brand name ideas based on user-provided keywords, industry, and style preferences, using the OpenAI API.",
+        "details": "Implement a `POST /api/projects/:id/name-generator` endpoint. The request body will include keywords, industry, and filters (e.g., 'style: inventive'). The backend service will use OpenAI GPT-4 to generate a list of potential brand names. Also, implement endpoints to save and remove 'favorited' names within the project document in MongoDB.",
+        "testStrategy": "Integration test the name generation endpoint, mocking the AI call. Write separate tests for the 'favorite' and 'unfavorite' actions to ensure they correctly update the project data.",
+        "priority": "high",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design API Endpoints for Brand Name Generation and Favorites Management",
+            "description": "Define and document the API endpoints required for the AI brand name generator, including the POST endpoint for generating names and endpoints for saving/removing favorited names within a project.",
+            "dependencies": [],
+            "details": "Specify the request and response schemas for each endpoint. Ensure the endpoints align with RESTful conventions and support necessary parameters such as keywords, industry, and style filters.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement AI Brand Name Generation Logic Using OpenAI GPT-4",
+            "description": "Develop the backend service that processes user input and interacts with the OpenAI GPT-4 API to generate brand name suggestions based on provided keywords, industry, and style preferences.",
+            "dependencies": [1],
+            "details": "Integrate the OpenAI GPT-4 API, construct effective prompts, handle API responses, and format the generated names for the frontend. Ensure error handling and logging are in place.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate Favorites Functionality with MongoDB",
+            "description": "Implement the logic to save and remove favorited brand names within the project document in MongoDB, ensuring data consistency and efficient updates.",
+            "dependencies": [2],
+            "details": "Create or update MongoDB queries to add or remove names from a 'favorites' array in the project document. Ensure endpoints are secure and only accessible to authorized users.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Build Brand Name Generator UI",
+        "description": "Develop the UI for the brand name generator, including input fields for criteria, filters, and a dynamic display for the generated names with a 'favorite' feature.",
+        "details": "Create a React component with a form for keywords and filters. On form submission, call the name generator API and display the returned list of names. Each name in the list should have a clickable star or heart icon to mark it as a favorite. This action should trigger an API call to update the project's list of favorited names.",
+        "testStrategy": "Test the form submission and the rendering of the name list using mock data. Test the 'favorite' button's click handler to ensure it calls the correct API and updates the UI state accordingly (e.g., a filled vs. an empty star).",
+        "priority": "high",
+        "dependencies": [7, 13],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Brand Name Generator Form UI",
+            "description": "Create the user interface for the brand name generator form, including input fields for keywords and filters that guide the name generation process.",
+            "dependencies": [],
+            "details": "Design and implement a React component with clearly labeled input fields for users to enter brand-related keywords and select relevant filters (such as industry, style, or length). Ensure the form is accessible and visually consistent with the application's design system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Dynamic Name List Display with Favorite Feature",
+            "description": "Develop the UI component that displays the generated brand names and allows users to mark names as favorites.",
+            "dependencies": [1],
+            "details": "After form submission, display the list of generated names in a dynamic, scrollable area. Each name should have a clickable star or heart icon to mark it as a favorite. Clicking the icon should trigger an API call to update the favorite status and visually reflect the change (e.g., filled vs. empty icon).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate API Calls and State Management",
+            "description": "Connect the UI components to the backend API for generating names and updating favorites, and manage UI state accordingly.",
+            "dependencies": [2],
+            "details": "Implement logic to call the name generator API on form submission and update the UI with the returned names. Ensure the favorite action triggers the appropriate API call and updates the UI state in real time. Handle loading, error, and empty states for a smooth user experience.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Implement AI Logo Generator API",
+        "description": "Create an API that uses the DALL-E 3 API to generate logo concepts based on user inputs such as style (e.g., wordmark, abstract), brand name, and descriptive keywords.",
+        "details": "Implement a `POST /api/projects/:id/logo-generator` endpoint. The backend service will construct a detailed prompt for the DALL-E 3 API from the user's inputs. The generated images should be uploaded to a cloud storage service (like Firebase Storage), and the public URLs of these images will be saved into the project document in MongoDB.",
+        "testStrategy": "Write an integration test for the endpoint that mocks both the DALL-E 3 API call and the cloud storage upload. The test should verify that a URL is correctly saved to the project's data.",
+        "priority": "medium",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design API Endpoint and Prompt Construction",
+            "description": "Define the POST /api/projects/:id/logo-generator endpoint and implement logic to construct a detailed prompt for DALL-E 3 based on user inputs (style, brand name, keywords).",
+            "dependencies": [],
+            "details": "Specify the request and response schema for the endpoint. Develop a function that takes user inputs and generates a prompt optimized for logo creation with DALL-E 3. Ensure prompt flexibility for different logo styles (e.g., wordmark, abstract).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate DALL-E 3 API and Cloud Storage",
+            "description": "Implement backend service to call the DALL-E 3 API with the constructed prompt, handle the image response, and upload the generated image to cloud storage (e.g., Firebase Storage).",
+            "dependencies": [1],
+            "details": "Use the OpenAI API key securely to access DALL-E 3. Parse the API response to obtain the image URL or binary data. Upload the image to the chosen cloud storage and retrieve the public URL for later use.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Save Image URLs and Write Integration Tests",
+            "description": "Save the public image URLs to the project document in MongoDB and implement integration tests that mock the DALL-E 3 API and cloud storage upload.",
+            "dependencies": [2],
+            "details": "Update the project document with the new logo image URLs. Write integration tests to verify that the endpoint correctly saves the URL, mocking external dependencies for reliable testing.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Build Logo Generator UI",
+        "description": "Develop the UI for the logo generator, allowing users to input their criteria, view the AI-generated logo concepts, and select their preferred logo for the brand.",
+        "details": "Create a React component with a form for logo style, keywords, and other criteria. On submission, call the API and display a loading state. Render the generated images in a grid from the URLs returned by the API. Implement a selection mechanism that allows the user to click on a logo to designate it as the 'official' logo for the project, which updates the project state.",
+        "testStrategy": "Test the form submission and the display of generated images from mock URLs. Test the selection logic to ensure it correctly updates the application's state and makes the appropriate backend call to save the choice.",
+        "priority": "medium",
+        "dependencies": [7, 15],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Logo Generator Input Form",
+            "description": "Create a React component that provides a form for users to input logo criteria such as style, keywords, and other preferences. Ensure the form is user-friendly and validates input before submission.",
+            "dependencies": [],
+            "details": "The form should include fields for logo style (e.g., wordmark, abstract), brand name, and descriptive keywords. Use appropriate UI components (e.g., dropdowns, text fields) and provide clear labels and validation feedback. On submission, trigger a loading state and prepare the data for the API call.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate API and Display Generated Logos",
+            "description": "Connect the input form to the AI Logo Generator API. On form submission, send the user’s criteria to the backend and display a loading indicator. Once the API returns logo image URLs, render them in a responsive grid layout.",
+            "dependencies": [1],
+            "details": "Handle the API call asynchronously. While waiting for the response, show a loading spinner or skeleton UI. After receiving the image URLs, display the logos in a grid using image components. Ensure the grid is responsive and visually appealing.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Logo Selection and State Update Mechanism",
+            "description": "Allow users to select their preferred logo from the generated options. When a logo is selected, visually indicate the selection and update the project state accordingly, including making a backend call to save the chosen logo.",
+            "dependencies": [2],
+            "details": "Add click handlers to each logo image so users can select one. Highlight the selected logo with a border or overlay. On selection, update the application state and trigger an API call to save the chosen logo as the official project logo. Ensure the UI reflects the current selection and handles errors gracefully.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Implement AI Color Palette Generator",
+        "description": "Create a feature that suggests cohesive color palettes based on brand personality keywords or mood, using AI for generation and a UI for selection.",
+        "details": "Backend: Implement a `POST /api/projects/:id/palette-generator` endpoint. This service will use OpenAI GPT-4 to generate an array of color palettes (each palette being an array of hex codes) based on user-provided keywords like 'energetic' or 'trustworthy'. Frontend: Create a UI for inputting keywords and displaying the generated palettes as rows of color swatches. Allow the user to click a palette to select and save it to their project.",
+        "testStrategy": "Backend: Integration test the API, mocking the AI call to ensure it returns a correctly formatted array of hex codes. Frontend: Test the UI for inputting keywords and rendering the color swatches from mock data. Test the selection and saving mechanism.",
+        "priority": "medium",
+        "dependencies": [6, 7],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop Backend AI Palette Generation Endpoint",
+            "description": "Implement the backend API endpoint (`POST /api/projects/:id/palette-generator`) that receives brand personality keywords or mood and uses OpenAI GPT-4 to generate an array of color palettes, each as an array of hex codes.",
+            "dependencies": [],
+            "details": "Ensure the endpoint accepts user input (keywords/mood), constructs a prompt for GPT-4, processes the AI response into valid color palettes, and returns them in the required format. Mock the AI call for integration testing to verify correct output structure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create Frontend UI for Palette Input and Display",
+            "description": "Build the user interface for entering keywords/mood, submitting the request, and displaying the generated color palettes as rows of color swatches.",
+            "dependencies": [1],
+            "details": "Design a form for user input, handle API requests to the backend, and render each palette as a row of clickable color swatches. Use mock data for initial UI testing and ensure real-time feedback as palettes are generated.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Palette Selection and Saving Mechanism",
+            "description": "Enable users to select a generated palette and save it to their project, updating the project data accordingly.",
+            "dependencies": [2],
+            "details": "Add click handlers to palette swatches, visually indicate selection, and implement the logic to save the selected palette to the project via an API call. Test the selection and saving flow to ensure data consistency.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Create Unified Document Export Service",
+        "description": "Develop a unified backend service that can generate and export various brand documents, such as the Strategy Brief and Style Guide, as a professionally formatted PDF.",
+        "details": "Create a single, flexible export endpoint: `GET /api/projects/:id/export?document=<doc_type>`. This service will fetch all necessary data for the specified project from MongoDB. It will then populate a corresponding HTML template (using a library like EJS or Handlebars) with the data. Finally, it will use Puppeteer to render the HTML page in a headless browser and save it as a PDF, which is then streamed to the client for download.",
+        "testStrategy": "Create unit tests for the HTML template population logic. Write an integration test for the endpoint that uses mock project data, generates a PDF, and verifies that the resulting file is a valid, non-empty PDF.",
+        "priority": "medium",
+        "dependencies": [8, 11, 15, 17],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Export Service Architecture and Endpoint",
+            "description": "Define the unified export endpoint structure and determine how it will handle different document types (e.g., Strategy Brief, Style Guide). Specify the data flow: fetching project data from MongoDB, selecting the correct HTML template, and integrating with Puppeteer for PDF rendering.",
+            "dependencies": [],
+            "details": "Document the API contract for GET /api/projects/:id/export?document=<doc_type>. Outline how the service will identify and fetch all required project data, and how it will select and populate the appropriate HTML template for each document type.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Data Fetching and Template Population Logic",
+            "description": "Develop the backend logic to retrieve all necessary project data from MongoDB and populate the corresponding HTML template using a templating engine such as EJS or Handlebars.",
+            "dependencies": [1],
+            "details": "Ensure the service can handle multiple document types by dynamically selecting and populating the correct template. Write unit tests to verify that the template population logic correctly reflects the input data for each document type.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate PDF Generation and Streaming",
+            "description": "Use Puppeteer to render the populated HTML template in a headless browser and generate a professionally formatted PDF. Stream the resulting PDF file to the client for download via the export endpoint.",
+            "dependencies": [2],
+            "details": "Implement the PDF generation workflow, ensuring error handling for rendering failures. Write integration tests to verify that the endpoint returns a valid, non-empty PDF for various document types and project data scenarios.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Build Project Summary Dashboard",
+        "description": "Create a dedicated dashboard page that displays a comprehensive summary of all key brand assets and documents created for a project, serving as a final overview.",
+        "details": "Create a new route and React component for `/:projectId/summary`. This component will fetch the complete project data. It will display key assets visually: the final logo, the color palette, the mission statement, and key persona highlights. It will also feature prominent download links for each exportable document (e.g., 'Download Style Guide'), which will point to the export service endpoint.",
+        "testStrategy": "Test the component's rendering with a complete mock project data object to ensure all assets are displayed correctly. Verify that the download links are constructed with the correct URLs for the export API.",
+        "priority": "high",
+        "dependencies": [18],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Route and Component for Project Summary Dashboard",
+            "description": "Set up a new route (/:projectId/summary) in the React application and implement a dedicated component to serve as the project summary dashboard.",
+            "dependencies": [],
+            "details": "Configure React Router to recognize the new summary route. Scaffold a new React component that will render the dashboard UI for the project summary.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Fetch and Aggregate Complete Project Data",
+            "description": "Implement logic within the summary dashboard component to fetch all relevant project data, aggregating assets and documents needed for display.",
+            "dependencies": [1],
+            "details": "Use appropriate data fetching methods (e.g., useEffect with fetch/axios) to retrieve project data from the backend. Ensure all key assets (logo, palette, mission, personas, exportable documents) are included in the aggregated data object.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Visually Display Key Brand Assets",
+            "description": "Render the project's key brand assets in a visually organized manner, including the final logo, color palette, mission statement, and persona highlights.",
+            "dependencies": [2],
+            "details": "Design and implement UI sections for each asset type. Use appropriate components (e.g., image for logo, color swatches for palette, styled text for mission, cards for personas) to ensure a clear and attractive presentation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Add Download Links for Exportable Documents",
+            "description": "Provide prominent download links for each exportable document, ensuring they point to the correct export service endpoints.",
+            "dependencies": [3],
+            "details": "For each exportable document in the project data, render a clearly labeled download button or link. Construct the download URLs to match the export API endpoints, and ensure accessibility and usability.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Implement Project Archive and Duplicate Functionality",
+        "description": "Add API endpoints and UI controls to allow users to archive a completed project (hiding it from the main view) or duplicate an existing project to start a new one from a template.",
+        "details": "Backend: Implement a `PATCH /api/projects/:id/archive` endpoint to set an `isArchived: true` flag on the project document. Implement a `POST /api/projects/:id/duplicate` endpoint that performs a deep copy of the project document, creating a new project for the user with a name like 'Copy of...'. Frontend: Add 'Archive' and 'Duplicate' buttons to the project summary dashboard and/or the main dashboard project list.",
+        "testStrategy": "Write integration tests for the archive and duplicate endpoints. Verify that archiving correctly flags the project and that duplication creates a new, independent copy of the project data.",
+        "priority": "medium",
+        "dependencies": [6, 19],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Archive Endpoint Implementation",
+            "description": "Develop the backend API endpoint (PATCH /api/projects/:id/archive) to set the isArchived flag to true on the project document, ensuring the project is hidden from the main view.",
+            "dependencies": [],
+            "details": "Implement logic to update the project document in the database, set isArchived: true, and ensure proper error handling and permissions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Duplicate Endpoint Implementation",
+            "description": "Create the backend API endpoint (POST /api/projects/:id/duplicate) that performs a deep copy of the project document, generating a new project with a modified name (e.g., 'Copy of...').",
+            "dependencies": [1],
+            "details": "Ensure all relevant project data is duplicated, assign a new unique ID, and handle any references or nested data to maintain data integrity.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Frontend Controls for Archive and Duplicate",
+            "description": "Add 'Archive' and 'Duplicate' buttons to the project summary dashboard and/or main dashboard project list in the frontend application.",
+            "dependencies": [1, 2],
+            "details": "Implement UI controls that trigger the respective API endpoints, provide user feedback (e.g., loading states, success/error messages), and ensure accessibility.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "UI Updates to Reflect Archived and Duplicated Projects",
+            "description": "Update the frontend to visually distinguish archived projects (e.g., hide from main list, show in archived view) and display newly duplicated projects appropriately.",
+            "dependencies": [3],
+            "details": "Implement logic to filter archived projects from the main view, add an archived projects section if needed, and ensure duplicated projects appear with the correct naming and data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integration and Testing",
+            "description": "Write and execute integration tests for both archive and duplicate endpoints, and verify frontend behavior for archiving and duplicating projects.",
+            "dependencies": [4],
+            "details": "Test backend endpoints for correct state changes and data integrity, and ensure frontend correctly reflects changes and handles edge cases (e.g., errors, permissions).",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Implement Project Data Versioning and Autosave",
+        "description": "Implement a backend system to automatically save user progress and create versioned snapshots of the project data, enabling a revision history.",
+        "details": "Create a new `versions` collection in MongoDB. Implement a `POST /api/projects/:id/autosave` endpoint. This endpoint will receive the current state of a project phase. It will update the main project document for live data access and simultaneously create a new, immutable document in the `versions` collection containing the full project data snapshot, a timestamp, and the user ID. The frontend will be configured to call this endpoint periodically or after significant user actions.",
+        "testStrategy": "Write an integration test for the autosave endpoint. After calling the endpoint, query the database to verify that both the main project document has been updated and a new, correct document has been inserted into the `versions` collection.",
+        "priority": "medium",
+        "dependencies": [6],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Versions Collection and Schema Setup",
+            "description": "Design and create the MongoDB `versions` collection. Define the schema to store full project data snapshots, including fields for project ID, user ID, timestamp, and the complete project state.",
+            "dependencies": [],
+            "details": "Ensure the schema supports efficient querying by project and timestamp. Add necessary indexes for performance. Document the schema for future reference.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Autosave Endpoint Implementation",
+            "description": "Develop the `POST /api/projects/:id/autosave` endpoint to receive the current project phase state from the frontend.",
+            "dependencies": [1],
+            "details": "Validate incoming data, authenticate the user, and prepare the data for both updating the main project and creating a version snapshot.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Logic for Updating Main Project and Saving Snapshots",
+            "description": "Implement backend logic to atomically update the main project document and insert a new immutable snapshot into the `versions` collection.",
+            "dependencies": [2],
+            "details": "Ensure both operations occur within a transaction for consistency. The snapshot must include all required metadata (timestamp, user ID, etc.).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Frontend Autosave Trigger Integration",
+            "description": "Integrate autosave logic into the frontend to periodically or conditionally trigger the autosave endpoint.",
+            "dependencies": [2],
+            "details": "Configure the frontend to send the current project state to the autosave endpoint at appropriate intervals or after significant user actions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Database Queries for Verification",
+            "description": "Write scripts or queries to verify that the main project document is updated and a new version snapshot is correctly inserted after autosave.",
+            "dependencies": [3],
+            "details": "Prepare queries to fetch the latest project state and all historical versions for a given project. Document expected results for test scenarios.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Automated Tests for Versioning",
+            "description": "Develop integration and unit tests to ensure the autosave and versioning system works as intended.",
+            "dependencies": [3, 5],
+            "details": "Test cases should cover successful autosave, failure scenarios, and data consistency between the main project and versions collections.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Build UI for Viewing and Reverting Versions",
+        "description": "Create a UI where users can view a history of their project's saved versions and have the option to revert the project to a previous state.",
+        "details": "Backend: Create a `GET /api/projects/:id/versions` endpoint to list all saved versions and a `POST /api/projects/:id/revert/:versionId` endpoint to restore a version's data to the main project document. Frontend: In the project workspace, add a 'History' panel or button. This UI will list the saved versions with timestamps. Each version will have a 'Revert' button that, after a confirmation prompt, calls the revert API.",
+        "testStrategy": "Test the API endpoints for listing and reverting versions. Use Cypress to test the UI flow: opening the history panel, seeing the list of versions, and successfully reverting the project after confirming.",
+        "priority": "low",
+        "dependencies": [7, 21],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Version History UI",
+            "description": "Create a user interface component (e.g., a 'History' panel or button) within the project workspace that displays a list of all saved project versions, including relevant metadata such as timestamps.",
+            "dependencies": [],
+            "details": "The UI should fetch version data from the backend and present it in a clear, chronological list. Each version entry should display its timestamp and any other relevant information to help users identify the desired version.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate Revert Functionality with Confirmation",
+            "description": "Add a 'Revert' button to each version entry in the history UI, which, when clicked, prompts the user for confirmation and then calls the backend API to revert the project to the selected version.",
+            "dependencies": [1],
+            "details": "Ensure the confirmation prompt clearly communicates the consequences of reverting. After confirmation, trigger the appropriate API call and handle the response, updating the UI to reflect the reverted state if successful.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test Version History and Revert UI Flow",
+            "description": "Develop and execute tests to verify that the version history is displayed correctly, the revert action works as intended, and the UI responds appropriately to success or failure.",
+            "dependencies": [2],
+            "details": "Use Cypress or a similar tool to automate UI tests: open the history panel, check the list of versions, perform a revert with confirmation, and validate that the project state updates as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Implement User Notification System",
+        "description": "Set up a system for sending optional in-app and email notifications for key events like phase completions or inactivity reminders to keep users engaged.",
+        "details": "Extend the `User` schema in MongoDB with a `notificationPreferences` object. Create a centralized `NotificationService` in the backend. This service will have methods like `sendPhaseCompletionEmail` or `createInAppAlert`. These methods will first check the user's preferences before proceeding. Use a library like `node-cron` to schedule a daily job that checks for inactive projects and triggers reminder notifications. Use Nodemailer or a similar service for email delivery.",
+        "testStrategy": "Unit test the logic of the `NotificationService`, mocking email sending and database calls. Write an integration test for the API endpoint that allows users to update their notification preferences.",
+        "priority": "medium",
+        "dependencies": [2],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Extend User Schema for Notification Preferences",
+            "description": "Modify the MongoDB User schema to include a 'notificationPreferences' object, allowing users to specify their preferences for in-app and email notifications for different event types.",
+            "dependencies": [],
+            "details": "Add a 'notificationPreferences' field to the User schema. This object should store boolean or enum values for each notification type (e.g., phase completions, inactivity reminders) and delivery method (in-app, email). Ensure the schema is flexible for future notification types.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "NotificationService Backend Implementation",
+            "description": "Develop a centralized NotificationService in the backend to handle notification logic, including checking user preferences and dispatching notifications.",
+            "dependencies": [1],
+            "details": "Implement methods such as 'sendPhaseCompletionEmail' and 'createInAppAlert' that first check the user's notificationPreferences before sending. The service should be modular to support both in-app and email notifications.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "In-App Notification Logic",
+            "description": "Implement the logic for creating and storing in-app notifications, ensuring they are delivered to users based on their preferences.",
+            "dependencies": [2],
+            "details": "Create a Notifications collection in MongoDB to store individual notifications. Implement logic to create a notification document when triggered, and ensure users can mark notifications as read. Integrate with WebSocket or polling for real-time delivery if required.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Email Notification Logic (Nodemailer)",
+            "description": "Integrate Nodemailer to send email notifications, respecting user preferences and supporting templated messages for different notification types.",
+            "dependencies": [2],
+            "details": "Configure Nodemailer for email delivery. Implement email templates for each notification type. Ensure NotificationService checks preferences before sending and handles errors gracefully.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Scheduled Jobs for Reminders (node-cron)",
+            "description": "Set up scheduled jobs using node-cron to trigger reminder notifications (e.g., inactivity reminders) based on user and project activity.",
+            "dependencies": [2, 3, 4],
+            "details": "Use node-cron to schedule daily or periodic jobs that query for inactive users or projects and trigger notifications via NotificationService. Ensure jobs are efficient and scalable.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "API for Updating Preferences and Tests",
+            "description": "Create API endpoints for users to update their notification preferences and implement unit/integration tests for the notification system.",
+            "dependencies": [1, 2, 3, 4, 5],
+            "details": "Develop RESTful endpoints for updating notificationPreferences in the User schema. Write unit tests for NotificationService logic (mocking email/database) and integration tests for the API endpoints.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Configure Progressive Web App (PWA) Capabilities",
+        "description": "Add a service worker and a web app manifest to the React frontend to make the application installable on user devices and provide a basic level of offline functionality.",
+        "details": "Create a `manifest.json` file in the `public` folder of the React app, defining the app's name, icons, start URL, and theme colors. Use a tool like Workbox (often integrated with Create React App) to generate a service worker file (`service-worker.js`). Configure the service worker to cache the main application shell (HTML, JS, CSS) and static assets. Register the service worker in the application's entry point (`index.js`).",
+        "testStrategy": "Use the Lighthouse audit panel in Chrome DevTools to verify that the application meets all PWA installability criteria. Test the offline capability by disconnecting from the network and refreshing the page; the app shell should still load from the cache.",
+        "priority": "low",
+        "dependencies": [4],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create manifest.json",
+            "description": "Create a manifest.json file in the public folder of the React app. Define essential properties such as name, short_name, icons (with multiple sizes and maskable purpose), start_url, display, background_color, and theme_color to ensure installability and proper appearance on devices.",
+            "dependencies": [],
+            "details": "Include at least name, short_name, start_url, display, background_color, theme_color, and a set of icons (including maskable). Reference the manifest in public/index.html with a <link rel=\"manifest\" href=\"%PUBLIC_URL%/manifest.json\" /> tag.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Service worker setup (Workbox)",
+            "description": "Set up a service worker using Workbox to enable offline support and caching for the React app. Configure it to cache the application shell (HTML, JS, CSS) and static assets.",
+            "dependencies": [1],
+            "details": "If using Create React App, ensure service-worker.js is generated and configured. If not, install Workbox and create a custom service worker with caching strategies for static assets and navigation requests.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Register service worker in React entry point",
+            "description": "Register the service worker in the application's entry point (index.js) to enable PWA features. Ensure the registration code is correct and handles updates gracefully.",
+            "dependencies": [2],
+            "details": "Import and call the service worker registration function (e.g., serviceWorkerRegistration.register()) in index.js. Handle registration success and error cases as needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Test installability and offline support",
+            "description": "Verify that the application meets PWA installability criteria and works offline. Use Lighthouse in Chrome DevTools to audit the app and manually test offline functionality.",
+            "dependencies": [3],
+            "details": "Run a Lighthouse audit to check for installability and PWA compliance. Disconnect from the network and refresh the app to confirm the shell loads from cache. Check service worker status in DevTools > Application > Service Workers.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Set Up CI/CD Pipeline for Production Deployment",
+        "description": "Configure a full CI/CD pipeline using GitHub Actions to automatically test, build, and deploy the frontend and backend applications to a production hosting environment.",
+        "details": "Create a `.github/workflows/deploy.yml` file. The workflow should be triggered on pushes to the `main` branch. Define separate jobs for the backend and frontend. Each job should: 1) Check out the code, 2) Set up the correct environment (e.g., Node.js), 3) Install dependencies, 4) Run all tests (linting, unit, integration). If tests pass, a final 'deploy' job will run, building the production assets and deploying them to the chosen hosting providers (e.g., Firebase, Vercel, Heroku). Use GitHub Secrets to store all necessary API keys and credentials.",
+        "testStrategy": "Create a test deployment to a staging environment first. Manually trigger the workflow and monitor its execution in the GitHub Actions tab. Verify that a successful push to the designated branch results in a live deployment. Check the application logs on the hosting provider for any runtime errors.",
+        "priority": "high",
+        "dependencies": [1],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Workflow Triggers and Jobs in deploy.yml",
+            "description": "Create the .github/workflows/deploy.yml file. Specify workflow triggers (e.g., push to main branch) and define separate jobs for backend and frontend processes.",
+            "dependencies": [],
+            "details": "Configure the workflow to trigger on events such as push to the main branch, pull requests, and manual dispatch. Define at least two jobs: one for backend and one for frontend, ensuring they run in parallel or sequentially as needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Backend CI/CD Steps",
+            "description": "Set up the backend job to perform code checkout, environment setup, dependency installation, testing, building, and deployment.",
+            "dependencies": [1],
+            "details": "In the backend job, add steps to check out the code, set up Node.js, install dependencies, run linting and tests, build the backend, and deploy to the production hosting provider if all previous steps succeed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Frontend CI/CD Steps",
+            "description": "Set up the frontend job to perform code checkout, environment setup, dependency installation, testing, building, and deployment.",
+            "dependencies": [1],
+            "details": "In the frontend job, add steps to check out the code, set up Node.js, install dependencies, run linting and tests, build the frontend assets, and deploy to the production hosting provider if all previous steps succeed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Configure Environment Variables and Secrets",
+            "description": "Set up required environment variables and secrets for both backend and frontend jobs using GitHub Actions' secrets and environment features.",
+            "dependencies": [1],
+            "details": "Define secrets in the repository or environment settings (e.g., API keys, deployment tokens). Reference these secrets in the workflow jobs to securely inject them during build and deployment steps.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Staging Deployment and Verification",
+            "description": "Configure a staging environment in the workflow and deploy both backend and frontend to staging for verification before production deployment.",
+            "dependencies": [2, 3, 4],
+            "details": "Add a job or environment for staging deployment. Ensure that deployments to staging can be manually or automatically triggered, and include steps to verify the deployment (e.g., smoke tests, manual checks).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Production Deployment and Monitoring",
+            "description": "Set up production deployment steps and integrate monitoring or post-deployment checks to ensure application health.",
+            "dependencies": [5],
+            "details": "Configure the workflow to deploy to production only after successful staging verification. Integrate monitoring steps, such as health checks or notifications, to confirm the deployment succeeded and the application is running as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-18T23:36:14.490Z",
+      "updated": "2025-07-19T00:15:15.447Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

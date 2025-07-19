@@ -1,0 +1,31 @@
+# Task ID: 8
+# Title: Implement Persona Creation API with AI Assistance
+# Status: pending
+# Dependencies: 6
+# Priority: high
+# Description: Create an API endpoint that accepts user input about their target audience and leverages the OpenAI GPT-4 API to generate detailed, structured customer personas.
+# Details:
+Implement a `POST /api/projects/:id/persona` endpoint. The request body will contain user-provided data like demographics, goals, and pain points. The backend service will construct a detailed prompt for the OpenAI API, execute the API call, parse the structured JSON response, and save the generated persona data into the correct project document in MongoDB.
+
+# Test Strategy:
+Write an integration test for the endpoint, mocking the OpenAI API call to ensure predictable results and avoid costs. Verify that the user input is correctly formatted into a prompt and that the parsed AI response is saved to the correct project in the database.
+
+# Subtasks:
+## 1. Design Persona Creation API Endpoint [pending]
+### Dependencies: None
+### Description: Define the API contract and implement the POST /api/projects/:id/persona endpoint to accept user input for persona generation.
+### Details:
+Specify the expected request body schema (demographics, goals, pain points, etc.). Set up input validation and ensure the endpoint is secured. Prepare the backend route and controller structure for handling persona creation requests.
+
+## 2. Integrate OpenAI GPT-4 for Persona Generation [pending]
+### Dependencies: 8.1
+### Description: Implement the logic to construct a detailed prompt from user input, call the OpenAI GPT-4 API, and parse the structured persona response.
+### Details:
+Use the OpenAI Node.js SDK to send a prompt to GPT-4 based on the received user data. Ensure the prompt requests a structured JSON persona. Parse the AI response and handle errors gracefully. Mock the OpenAI API in tests to avoid real calls.
+
+## 3. Persist Generated Persona and Write Integration Tests [pending]
+### Dependencies: 8.2
+### Description: Save the parsed persona data to the correct project document in MongoDB and implement integration tests for the endpoint.
+### Details:
+Update the relevant project document with the new persona data. Write integration tests that mock the AI call, verify prompt formatting, and confirm persona data is saved correctly. Ensure tests cover both success and failure scenarios.
+

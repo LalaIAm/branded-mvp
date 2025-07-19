@@ -1,0 +1,37 @@
+# Task ID: 24
+# Title: Configure Progressive Web App (PWA) Capabilities
+# Status: pending
+# Dependencies: 4
+# Priority: low
+# Description: Add a service worker and a web app manifest to the React frontend to make the application installable on user devices and provide a basic level of offline functionality.
+# Details:
+Create a `manifest.json` file in the `public` folder of the React app, defining the app's name, icons, start URL, and theme colors. Use a tool like Workbox (often integrated with Create React App) to generate a service worker file (`service-worker.js`). Configure the service worker to cache the main application shell (HTML, JS, CSS) and static assets. Register the service worker in the application's entry point (`index.js`).
+
+# Test Strategy:
+Use the Lighthouse audit panel in Chrome DevTools to verify that the application meets all PWA installability criteria. Test the offline capability by disconnecting from the network and refreshing the page; the app shell should still load from the cache.
+
+# Subtasks:
+## 1. Create manifest.json [pending]
+### Dependencies: None
+### Description: Create a manifest.json file in the public folder of the React app. Define essential properties such as name, short_name, icons (with multiple sizes and maskable purpose), start_url, display, background_color, and theme_color to ensure installability and proper appearance on devices.
+### Details:
+Include at least name, short_name, start_url, display, background_color, theme_color, and a set of icons (including maskable). Reference the manifest in public/index.html with a <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> tag.
+
+## 2. Service worker setup (Workbox) [pending]
+### Dependencies: 24.1
+### Description: Set up a service worker using Workbox to enable offline support and caching for the React app. Configure it to cache the application shell (HTML, JS, CSS) and static assets.
+### Details:
+If using Create React App, ensure service-worker.js is generated and configured. If not, install Workbox and create a custom service worker with caching strategies for static assets and navigation requests.
+
+## 3. Register service worker in React entry point [pending]
+### Dependencies: 24.2
+### Description: Register the service worker in the application's entry point (index.js) to enable PWA features. Ensure the registration code is correct and handles updates gracefully.
+### Details:
+Import and call the service worker registration function (e.g., serviceWorkerRegistration.register()) in index.js. Handle registration success and error cases as needed.
+
+## 4. Test installability and offline support [pending]
+### Dependencies: 24.3
+### Description: Verify that the application meets PWA installability criteria and works offline. Use Lighthouse in Chrome DevTools to audit the app and manually test offline functionality.
+### Details:
+Run a Lighthouse audit to check for installability and PWA compliance. Disconnect from the network and refresh the app to confirm the shell loads from cache. Check service worker status in DevTools > Application > Service Workers.
+

@@ -1,0 +1,31 @@
+# Task ID: 17
+# Title: Implement AI Color Palette Generator
+# Status: pending
+# Dependencies: 6, 7
+# Priority: medium
+# Description: Create a feature that suggests cohesive color palettes based on brand personality keywords or mood, using AI for generation and a UI for selection.
+# Details:
+Backend: Implement a `POST /api/projects/:id/palette-generator` endpoint. This service will use OpenAI GPT-4 to generate an array of color palettes (each palette being an array of hex codes) based on user-provided keywords like 'energetic' or 'trustworthy'. Frontend: Create a UI for inputting keywords and displaying the generated palettes as rows of color swatches. Allow the user to click a palette to select and save it to their project.
+
+# Test Strategy:
+Backend: Integration test the API, mocking the AI call to ensure it returns a correctly formatted array of hex codes. Frontend: Test the UI for inputting keywords and rendering the color swatches from mock data. Test the selection and saving mechanism.
+
+# Subtasks:
+## 1. Develop Backend AI Palette Generation Endpoint [pending]
+### Dependencies: None
+### Description: Implement the backend API endpoint (`POST /api/projects/:id/palette-generator`) that receives brand personality keywords or mood and uses OpenAI GPT-4 to generate an array of color palettes, each as an array of hex codes.
+### Details:
+Ensure the endpoint accepts user input (keywords/mood), constructs a prompt for GPT-4, processes the AI response into valid color palettes, and returns them in the required format. Mock the AI call for integration testing to verify correct output structure.
+
+## 2. Create Frontend UI for Palette Input and Display [pending]
+### Dependencies: 17.1
+### Description: Build the user interface for entering keywords/mood, submitting the request, and displaying the generated color palettes as rows of color swatches.
+### Details:
+Design a form for user input, handle API requests to the backend, and render each palette as a row of clickable color swatches. Use mock data for initial UI testing and ensure real-time feedback as palettes are generated.
+
+## 3. Implement Palette Selection and Saving Mechanism [pending]
+### Dependencies: 17.2
+### Description: Enable users to select a generated palette and save it to their project, updating the project data accordingly.
+### Details:
+Add click handlers to palette swatches, visually indicate selection, and implement the logic to save the selected palette to the project via an API call. Test the selection and saving flow to ensure data consistency.
+

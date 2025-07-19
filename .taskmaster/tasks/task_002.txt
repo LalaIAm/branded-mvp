@@ -1,0 +1,49 @@
+# Task ID: 2
+# Title: Implement User Registration and Login API
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create backend endpoints for user registration (email/password) and login. This includes secure password hashing, JWT generation for session management, and storing user data in the MongoDB database.
+# Details:
+Define a `User` schema in MongoDB using Mongoose, including fields for `email`, `password` (to store the hash), and timestamps. Implement a `POST /api/auth/register` endpoint that validates input, checks for existing users, hashes the password using `bcrypt`, and saves the new user. Implement a `POST /api/auth/login` endpoint that validates credentials, compares the password hash with `bcrypt.compare`, and issues a signed JSON Web Token (JWT) on success.
+
+# Test Strategy:
+Use an API testing tool like Supertest to write integration tests. Cover successful registration, duplicate email error, successful login, login with wrong password, and validation errors for invalid email/password formats.
+
+# Subtasks:
+## 1. Define User Schema/Model [pending]
+### Dependencies: None
+### Description: Create a Mongoose schema for the User, including fields for email, password (hashed), and timestamps.
+### Details:
+Use Mongoose to define a User model with required fields: email (unique, validated), password (hashed), and timestamps for creation and updates.
+
+## 2. Implement Registration Endpoint with Validation and Password Hashing [pending]
+### Dependencies: 2.1
+### Description: Develop the POST /api/auth/register endpoint to handle user registration, including input validation and secure password hashing.
+### Details:
+Validate input (email format, password strength), check for existing users, hash the password using bcrypt, and save the new user to MongoDB. Return appropriate success or error responses.
+
+## 3. Implement Login Endpoint with Credential Validation and JWT Issuance [pending]
+### Dependencies: 2.1
+### Description: Develop the POST /api/auth/login endpoint to authenticate users and issue a JWT upon successful login.
+### Details:
+Validate input, find the user by email, compare the provided password with the stored hash using bcrypt, and issue a signed JWT if credentials are valid. Return error responses for invalid credentials.
+
+## 4. Implement Error Handling for Registration and Login [pending]
+### Dependencies: 2.2, 2.3
+### Description: Add robust error handling for both registration and login endpoints to cover validation errors, duplicate users, and authentication failures.
+### Details:
+Ensure all error cases (e.g., missing fields, invalid formats, duplicate email, wrong password) return clear and secure error messages with appropriate HTTP status codes.
+
+## 5. Integrate with MongoDB [pending]
+### Dependencies: 2.1, 2.2, 2.3, 2.4
+### Description: Set up MongoDB connection and ensure all user data is stored and retrieved securely using Mongoose.
+### Details:
+Configure MongoDB connection (e.g., using environment variables), and verify that registration and login endpoints interact correctly with the database.
+
+## 6. Write Automated Tests for All Scenarios [pending]
+### Dependencies: 2.2, 2.3, 2.4, 2.5
+### Description: Develop automated integration tests covering registration, login, error cases, and edge scenarios.
+### Details:
+Use a testing framework (e.g., Jest, Supertest) to write tests for successful registration, duplicate email, successful login, invalid credentials, and input validation errors.
+

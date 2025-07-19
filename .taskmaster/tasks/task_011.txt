@@ -1,0 +1,31 @@
+# Task ID: 11
+# Title: Implement Mission and Vision Wizard API
+# Status: pending
+# Dependencies: 6
+# Priority: high
+# Description: Create an API for an interactive wizard that guides users through defining their brand's mission and vision, using AI to help draft the final statements based on their input.
+# Details:
+Implement a `POST /api/projects/:id/strategy` endpoint. The request body will contain user answers to foundational questions (e.g., 'What problem do you solve?'). The backend will use OpenAI GPT-4 with a specifically engineered prompt (e.g., based on the 'Golden Circle' framework) to generate concise and impactful mission and vision statements. The generated drafts are then saved to the project document in MongoDB.
+
+# Test Strategy:
+Write an integration test for the endpoint, mocking the OpenAI API call. The test should verify that user inputs are correctly incorporated into the AI prompt and that the resulting statements are saved to the correct project.
+
+# Subtasks:
+## 1. Design API Endpoint and Data Flow [pending]
+### Dependencies: None
+### Description: Define the structure and validation for the POST /api/projects/:id/strategy endpoint. Specify the expected request body schema for user answers, and outline the response format for generated mission and vision statements. Ensure the endpoint integrates with the project document in MongoDB for saving results.
+### Details:
+Clarify which foundational questions are required, how user input will be validated, and how the endpoint will handle errors. Document the expected JSON structure for both requests and responses.
+
+## 2. Integrate OpenAI GPT-4 for Statement Generation [pending]
+### Dependencies: 11.1
+### Description: Implement backend logic to process user answers, construct a prompt using the 'Golden Circle' framework, and call the OpenAI GPT-4 API to generate mission and vision statements. Parse and validate the AI response, then save the drafts to the appropriate project document in MongoDB.
+### Details:
+Use the OpenAI SDK for Node.js to send requests to the GPT-4 model. Ensure the prompt is engineered to elicit concise, impactful statements. Handle API errors and ensure the AI output is correctly mapped to the project schema.
+
+## 3. Write Integration Test with Mocked OpenAI API [pending]
+### Dependencies: 11.2
+### Description: Develop an integration test for the mission and vision wizard endpoint. Mock the OpenAI API call to ensure tests are deterministic. Verify that user inputs are correctly incorporated into the AI prompt and that the generated statements are saved to the correct project document in MongoDB.
+### Details:
+Test both successful and failure scenarios, including invalid input and API errors. Confirm that the endpoint updates the project document as expected and returns the correct response to the client.
+

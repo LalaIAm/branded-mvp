@@ -1,0 +1,31 @@
+# Task ID: 3
+# Title: Implement JWT-based Secure Route Middleware
+# Status: pending
+# Dependencies: 2
+# Priority: high
+# Description: Create a middleware for the Node.js backend to protect routes by validating the JWT provided in the HTTP Authorization header, ensuring only authenticated users can access protected resources.
+# Details:
+Create an Express middleware function that extracts the token from the `Authorization: Bearer <token>` header. Use the `jsonwebtoken` library to verify the token's signature and expiration against the secret key. If the token is valid, attach the decoded user payload (e.g., `userId`) to the `req` object for use in subsequent handlers. If the token is invalid or missing, respond with a 401 Unauthorized status.
+
+# Test Strategy:
+Write integration tests for a sample protected endpoint. Test cases should include requests with a valid token, an invalid token, an expired token, and no token, verifying the correct HTTP status code is returned for each.
+
+# Subtasks:
+## 1. Design Middleware Structure and Token Extraction [pending]
+### Dependencies: None
+### Description: Define the Express middleware function that will extract the JWT from the Authorization header in the format 'Bearer <token>'. Ensure the middleware handles missing or malformed headers gracefully.
+### Details:
+Create a new file (e.g., middleware/authenticate.js). The middleware should check for the presence of the Authorization header, split it to extract the token, and handle cases where the header or token is missing by responding with a 401 Unauthorized status.
+
+## 2. Implement JWT Verification and User Payload Attachment [pending]
+### Dependencies: 3.1
+### Description: Use the jsonwebtoken library to verify the extracted token's signature and expiration against the secret key. If valid, attach the decoded user payload to the req object for downstream handlers.
+### Details:
+Call jwt.verify(token, process.env.JWT_SECRET) inside a try-catch block. On success, assign the decoded payload (e.g., userId) to req.user. On failure (invalid or expired token), respond with a 401 Unauthorized status and an appropriate error message.
+
+## 3. Integrate Middleware and Write Integration Tests [pending]
+### Dependencies: 3.2
+### Description: Apply the middleware to protected routes in the Express app and write integration tests covering valid, invalid, expired, and missing token scenarios.
+### Details:
+Add the middleware to one or more protected endpoints (e.g., app.get('/protected', authenticate, ...)). Write integration tests that send requests with different token states, verifying that the correct HTTP status codes and responses are returned for each case.
+

@@ -1,0 +1,49 @@
+# Task ID: 21
+# Title: Implement Project Data Versioning and Autosave
+# Status: pending
+# Dependencies: 6
+# Priority: medium
+# Description: Implement a backend system to automatically save user progress and create versioned snapshots of the project data, enabling a revision history.
+# Details:
+Create a new `versions` collection in MongoDB. Implement a `POST /api/projects/:id/autosave` endpoint. This endpoint will receive the current state of a project phase. It will update the main project document for live data access and simultaneously create a new, immutable document in the `versions` collection containing the full project data snapshot, a timestamp, and the user ID. The frontend will be configured to call this endpoint periodically or after significant user actions.
+
+# Test Strategy:
+Write an integration test for the autosave endpoint. After calling the endpoint, query the database to verify that both the main project document has been updated and a new, correct document has been inserted into the `versions` collection.
+
+# Subtasks:
+## 1. Versions Collection and Schema Setup [pending]
+### Dependencies: None
+### Description: Design and create the MongoDB `versions` collection. Define the schema to store full project data snapshots, including fields for project ID, user ID, timestamp, and the complete project state.
+### Details:
+Ensure the schema supports efficient querying by project and timestamp. Add necessary indexes for performance. Document the schema for future reference.
+
+## 2. Autosave Endpoint Implementation [pending]
+### Dependencies: 21.1
+### Description: Develop the `POST /api/projects/:id/autosave` endpoint to receive the current project phase state from the frontend.
+### Details:
+Validate incoming data, authenticate the user, and prepare the data for both updating the main project and creating a version snapshot.
+
+## 3. Logic for Updating Main Project and Saving Snapshots [pending]
+### Dependencies: 21.2
+### Description: Implement backend logic to atomically update the main project document and insert a new immutable snapshot into the `versions` collection.
+### Details:
+Ensure both operations occur within a transaction for consistency. The snapshot must include all required metadata (timestamp, user ID, etc.).
+
+## 4. Frontend Autosave Trigger Integration [pending]
+### Dependencies: 21.2
+### Description: Integrate autosave logic into the frontend to periodically or conditionally trigger the autosave endpoint.
+### Details:
+Configure the frontend to send the current project state to the autosave endpoint at appropriate intervals or after significant user actions.
+
+## 5. Database Queries for Verification [pending]
+### Dependencies: 21.3
+### Description: Write scripts or queries to verify that the main project document is updated and a new version snapshot is correctly inserted after autosave.
+### Details:
+Prepare queries to fetch the latest project state and all historical versions for a given project. Document expected results for test scenarios.
+
+## 6. Automated Tests for Versioning [pending]
+### Dependencies: 21.3, 21.5
+### Description: Develop integration and unit tests to ensure the autosave and versioning system works as intended.
+### Details:
+Test cases should cover successful autosave, failure scenarios, and data consistency between the main project and versions collections.
+

@@ -1,0 +1,43 @@
+# Task ID: 7
+# Title: Build User Dashboard for Project Management
+# Status: pending
+# Dependencies: 4, 6
+# Priority: high
+# Description: Develop the main user dashboard UI where users can view a list of their existing projects, create new projects, and select a project to begin or continue working on.
+# Details:
+Create a `Dashboard` React component that is the main view after login. Use a `useEffect` hook to fetch the user's projects from the `GET /api/projects` endpoint and display them as a grid of cards. Each card should show project details and be a link to that project's workspace. Include a prominent 'Create New Project' button that triggers a modal form to call the `POST /api/projects` endpoint.
+
+# Test Strategy:
+Use React Testing Library to test the rendering of the project list from mock data. Test the new project creation modal and form submission. Use Cypress for an E2E test of creating a new project and verifying it appears on the dashboard.
+
+# Subtasks:
+## 1. Dashboard Route and Component Setup [pending]
+### Dependencies: None
+### Description: Create the main Dashboard route and React component as the primary view after user login. Ensure it is accessible via routing and serves as the container for project management features.
+### Details:
+Set up a new route (e.g., '/dashboard') in React Router. Implement a Dashboard component that will later fetch and display the user's projects.
+
+## 2. Fetch and Display Project List [pending]
+### Dependencies: 7.1
+### Description: Implement logic to fetch the user's project list from the backend and render it in the Dashboard component.
+### Details:
+Use the useEffect hook to call the GET /api/projects endpoint on component mount. Store the project data in state and render each project as a card or list item.
+
+## 3. Project Card UI and Navigation [pending]
+### Dependencies: 7.2
+### Description: Design and implement the UI for individual project cards, including navigation to each project's workspace.
+### Details:
+Create a reusable ProjectCard component that displays project details. Make each card clickable, navigating to the corresponding project workspace route (e.g., '/projects/:projectId').
+
+## 4. Create New Project Modal/Form [pending]
+### Dependencies: 7.2
+### Description: Add a 'Create New Project' button to the dashboard that opens a modal with a form for project creation.
+### Details:
+Implement a modal dialog containing a form for new project details. On submission, call the POST /api/projects endpoint and update the project list on success.
+
+## 5. Integration with Backend Endpoints [pending]
+### Dependencies: 7.2, 7.3, 7.4
+### Description: Ensure all dashboard features are fully integrated with backend API endpoints for project retrieval and creation.
+### Details:
+Verify that GET /api/projects and POST /api/projects are correctly called and handled. Ensure error states and loading indicators are managed appropriately.
+

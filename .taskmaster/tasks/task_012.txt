@@ -1,0 +1,31 @@
+# Task ID: 12
+# Title: Build Mission and Vision Wizard UI
+# Status: pending
+# Dependencies: 7, 11
+# Priority: high
+# Description: Develop the multi-step form (wizard) UI that guides the user through the process of defining their brand's mission and vision, and displays the AI-generated drafts for editing.
+# Details:
+Create a multi-step React component to act as the wizard. Each step will present a question to the user. Use a state management library or component state to hold the answers. After the final step, submit all answers to the `POST /api/projects/:id/strategy` endpoint. Display the AI-generated drafts in editable `<textarea>` elements, allowing the user to refine and save the final versions.
+
+# Test Strategy:
+Use React Testing Library to test the wizard flow, including navigation between steps, state updates, and the final submission. Test the display and editing of the AI-generated drafts.
+
+# Subtasks:
+## 1. Design Multi-Step Wizard UI Structure [pending]
+### Dependencies: None
+### Description: Define the step sequence, questions, and layout for the mission and vision wizard. Specify the user flow, including navigation (next, previous), progress indicators, and where AI-generated drafts will be displayed for editing.
+### Details:
+Create wireframes or a component structure outline for the wizard. List each step's purpose and the data to collect. Decide how to visually separate steps and how users will interact with AI-generated drafts (e.g., editable textareas).
+
+## 2. Implement Multi-Step Wizard Component in React [pending]
+### Dependencies: 12.1
+### Description: Develop the React multi-step form component, managing state across steps and integrating navigation. Ensure each step collects user input and stores it in a central state, using a state management solution or component state.
+### Details:
+Use libraries such as React Hook Form and Zod for form handling and validation. Implement step transitions, progress tracking, and state persistence. Ensure the component is modular and testable, following best practices for maintainability and scalability[1][2][3].
+
+## 3. Integrate API and Editable AI-Generated Drafts [pending]
+### Dependencies: 12.2
+### Description: Connect the wizard's final step to the backend API to submit user answers and retrieve AI-generated mission and vision drafts. Display these drafts in editable fields, allowing users to refine and save their final statements.
+### Details:
+On final step submission, call the POST /api/projects/:id/strategy endpoint. Render the returned drafts in <textarea> elements for editing. Implement save functionality for the refined statements. Ensure error handling and loading states are user-friendly.
+

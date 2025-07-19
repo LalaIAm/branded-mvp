@@ -1,0 +1,875 @@
+# Brand Builder
+
+## Executive Summary
+
+This project is a comprehensive Brand Builder application designed to guide users through the phases of brand development, from audience research and brand strategy foundation to brand identity creation and positioning. It leverages modern technologies including Next.js, Tailwind CSS, Node.js, AI APIs (OpenAI, DALL-E), and PWA capabilities to deliver a scalable, fast, and user-friendly experience. Key features include persona creation, competitor analysis, mission and vision wizards, values and personality setting, logo and palette generation, and exportable polished documents such as strategy briefs and style guides. After project completion, users are presented with a clear summary dashboard highlighting key brand assets and documents, with options to duplicate, archive, or start new projects, alongside suggested next steps to revisit phases or explore future collaboration features. Optional notifications, including email and in-app alerts for progress reminders and phase completions, are planned to enhance user engagement and keep users on track without being intrusive. The project aims to provide a robust brand planning assistant with phased rollout and future integrations like Google Docs and Figma syncing to support continuous growth and collaboration.
+
+## Core Functionalities
+
+-   **Brand Strategy Wizard:** Interactive forms and AI prompts to define mission, vision, values, and brand personality with exportable strategy documents. (Priority: **High**)
+    
+-   **Brand Identity Development:** AI-powered tools for name generation, voice/tone selection, brand story creation, and identity brief export. (Priority: **High**)
+    
+-   **Visual Identity Creation:** Logo generation, color palette suggestions, typography pairing, and style guide export to capture brand visuals. (Priority: **Medium**)
+    
+-   **Project Summary Dashboard:** Dashboard displaying key brand assets and documents with options to duplicate, archive, start new projects, and suggested next steps. (Priority: **High**)
+    
+-   **User Notifications:** Optional email and in-app notifications for progress reminders and phase completion alerts to keep users engaged. (Priority: **Medium**)
+    
+
+## Tech Stack
+
+-   **Frontend:** React
+    
+-   **Backend:** Google Firebase, Google Firestore, Firebase Functions
+    
+-   **AI:** Google AI
+    
+-   **AI Processing:** OpenAI GPT-4
+    
+-   **ImageGeneration:** DALL-E 3
+    
+-   **Database:** MongoDB
+    
+-   **Data Storage:** Redis
+    
+-   **API Communication:** REST API
+    
+-   **Authentication:** JWT
+    
+-   **UI/UX Design:** Figma
+    
+-   **Web scraping:** Puppeteer
+    
+-   **Typography:** Google Fonts
+    
+-   **UI Design:** Heroicons
+    
+
+## Project Timeline
+
+Tasks are categorized by complexity to guide time estimations: XS, S, M, L, XL, XXL.
+
+**Roles:**
+
+-   **Backend Developer** (BD)
+    
+-   **DevOps Engineer** (DE)
+    
+-   **Frontend Developer** (FD)
+    
+-   **QA Engineer** (QA)
+    
+-   **UI/UX Designer** (UID)
+    
+-   **Technical Writer** (TW)
+    
+-   **Database Administrator** (DBA)
+    
+-   **Full Stack Developer** (FSD)
+    
+-   **AI Engineer** (AI)
+    
+-   **Security Specialist** (SS)
+    
+
+### **Milestone 1: Initial setup including design system and CI/CD configuration to establish the project foundation.**
+
+_Estimated 34 hours_
+
+-   **Initialize Project Repository and Basic File Structure:** As a developer, I want to initialize the project repository with a standard folder structure and configuration files so that the project has a consistent foundation for development.**(5 hours)** - Repository is created on GitHub (or chosen platform). - Basic folder structure is established (src, public, tests, config). - Essential config files are added (.gitignore, README.md, package.json). - Initial commit is pushed to the remote repository.
+    
+    -   Initialize Git repository with .gitignore and README.md files using Git CLI in the Project Repository node to establish version control baseline. - (S) (1 hours)\[BD\]
+        
+    -   Create standard folder structure (src, config, public, tests) with initial placeholder files using Node.js fs module in the Project Repository node for consistent project layout. - (S) (1 hours)\[BD\]
+        
+    -   Add ESLint, Prettier config files with base rules and scripts in the Project Repository node to enforce code quality and consistency. - (M) (1.5 hours)\[BD\]
+        
+    -   Configure GitHub Actions workflow for CI/CD with lint, test, and build steps in the Project Repository node to automate quality checks and deployments. - (M) (1.5 hours)\[DE\]
+        
+-   **Configure Development Environment and Tooling:** As a developer, I want to configure the local development environment with necessary tools and dependencies so that development is efficient and standardized.**(8 hours)** - Node.js and package manager versions are specified. - ESLint and Prettier are configured for code quality and formatting. - Development scripts (start, build, test) are defined in package.json. - Documentation on environment setup is provided.
+    
+    -   Initialize Node.js environment with package.json, install ESLint, Prettier, and Husky for linting and formatting in the Development Environment node - (S) (1.5 hours)\[BD\]
+        
+    -   Configure VSCode settings.json for consistent editor config and set up Git pre-commit hooks using Husky and lint-staged in the Development Environment node - (S) (1.5 hours)\[FD\]\[BD\]
+        
+    -   Install and configure essential dev dependencies: Jest for testing, React Testing Library for frontend tests, and Cypress for E2E tests in the Development Environment node - (M) (2.5 hours)\[QA\]\[FD\]
+        
+    -   Create Dockerfile and docker-compose.yml for local dev environment with Node.js, MongoDB, and Redis; configure .env files for environment variables in the Development Environment node - (M) (2.5 hours)\[DO\]\[BD\]
+        
+-   **Set Up Design System and Component Library:** As a UI developer, I want to set up a design system and component library using Tailwind CSS and optionally Chakra UI or Material-UI so that UI development is consistent and efficient.**(10 hours)** - Tailwind CSS is integrated into the project. - Base styles and themes are defined. - Component library (Chakra UI or Material-UI) is installed and configured. - Sample reusable components are created (buttons, inputs). - Documentation on design system usage is available.
+    
+    -   Initialize Tailwind CSS with a custom config file using PostCSS in the Web App Frontend node, enabling JIT mode and purging unused styles for optimized build size. - (S) (1.5 hours)\[FD\]
+        
+    -   Define design tokens (colors, fonts, spacing) in Tailwind config and export as JSON for reuse in the Web App Frontend node to ensure consistent theming across components. - (M) (3 hours)\[UID\]\[FD\]
+        
+    -   Develop reusable UI components (buttons, inputs, cards) styled with Tailwind CSS and optionally Chakra UI in the Web App Frontend node, using Storybook for isolated development and documentation. - (M) (4 hours)\[FD\]
+        
+    -   Configure Storybook with Tailwind CSS integration in the Web App Frontend node to enable visual testing and documentation of the design system components. - (S) (1.5 hours)\[FD\]
+        
+-   **Implement CI/CD Pipeline for Automated Builds and Tests:** As a DevOps engineer, I want to implement a CI/CD pipeline using GitHub Actions or similar so that code is automatically built, tested, and deployed to staging environments.**(11 hours)** - CI pipeline triggers on pull requests and merges. - Automated linting, testing, and build steps are included. - Deployment to a staging environment is automated. - Notifications on build status are configured. - Documentation on pipeline usage is provided.
+    
+    -   Configure GitHub Actions workflow YAML with jobs for build, test, and deploy stages using actions/checkout and actions/setup-node in the API Backend node - (S) (2 hours)\[DE\]
+        
+    -   Create npm scripts for build and test commands in package.json and integrate with GitHub Actions jobs in the API Backend node - (M) (4 hours)\[BD\]
+        
+    -   Add deployment job in GitHub Actions using environment secrets and deploy script to staging server in the API Backend node - (M) (4 hours)\[DE\]
+        
+    -   Document CI/CD pipeline setup, workflow triggers, environment variables, and rollback procedures in the API Backend node - (XS) (1 hours)\[TW\]
+        
+
+### **Milestone 2: User onboarding with landing page and authentication to enable access and project creation.**
+
+_Estimated 52 hours_
+
+-   **Landing Page UI Design and Content:** As a user, I want to see a clean, informative landing page that introduces the brand building app, its purpose, and key benefits so that I can understand what the app offers before starting.**(4 hours)** - The landing page displays a clear headline and subheadline explaining the app's purpose. - Key features and benefits are summarized in a visually appealing layout. - The page includes a prominent call-to-action button to start the brand building process. - The design is responsive and works well on desktop and mobile devices.
+    
+    -   Design static landing page layout using Tailwind CSS utility classes for responsive grid and typography in the Web App Frontend node. - (S) (1 hours)\[FD\]
+        
+    -   Implement React functional component with useState for dynamic intro text and key benefits toggling in the Web App Frontend node. - (S) (1 hours)\[FD\]
+        
+    -   Integrate SEO metadata tags using Next.js Head component for title, description, and social sharing in the Web App Frontend node. - (M) (1 hours)\[FD\]
+        
+    -   Write unit tests with Jest and React Testing Library for landing page components ensuring content renders and interactions work in the Web App Frontend node. - (S) (1 hours)\[FD\]\[QA\]
+        
+-   **Landing Page Navigation to Signup/Login:** As a user, I want to easily navigate from the landing page to the authentication screens (signup/login) so that I can create an account or log in to start using the app.**(2.5 hours)** - The landing page includes clear navigation links or buttons to signup and login. - Navigation triggers the appropriate authentication flow. - Navigation elements are accessible and visible on all device sizes.
+    
+    -   Create React Router Link components for Signup and Login buttons on the Landing Page in the Web App Frontend node, ensuring accessible navigation and proper route paths for /signup and /login. - (S) (1 hours)\[FD\]
+        
+    -   Implement route handlers for /signup and /login pages using React Router in the Web App Frontend node, including lazy loading components and fallback UI for smooth navigation. - (S) (1 hours)\[FD\]
+        
+    -   Add unit tests for navigation links and route rendering using React Testing Library and Jest in the Web App Frontend node to ensure reliable navigation from Landing Page to Signup/Login screens. - (XS) (0.5 hours)\[QA\]
+        
+-   **Landing Page SEO and Metadata Setup:** As a product owner, I want the landing page to have proper SEO metadata and social sharing tags so that the app is discoverable and presents well on social media platforms.**(3.5 hours)** - The landing page includes meta title and description tags. - Open Graph and Twitter Card tags are implemented for social sharing. - SEO best practices for headings and content structure are followed. - The page loads efficiently without SEO penalties.
+    
+    -   Add meta tags for title, description, canonical URL, and viewport in the HTML head using Next.js Head component in the Web App Frontend node for SEO optimization. - (S) (1 hours)\[FD\]
+        
+    -   Implement Open Graph and Twitter Card meta tags in the Next.js Head component for social sharing previews in the Web App Frontend node, including dynamic content from page props. - (M) (1.5 hours)\[FD\]
+        
+    -   Create automated tests using Jest and React Testing Library to verify presence and correctness of SEO and social meta tags in the Web App Frontend node. - (S) (1 hours)\[QA\]
+        
+-   **Landing Page Performance Optimization and Analytics:** As a product manager, I want the landing page to load quickly and track user visits via analytics so that we can monitor user interest and optimize performance.**(3.5 hours)** - The landing page loads within 2 seconds on standard broadband. - Google Analytics or similar tracking is integrated and records page views. - Performance metrics are monitored and reported. - Lazy loading or asset optimization techniques are applied as needed.
+    
+    -   Implement lazy loading and code splitting using React.lazy and Suspense in the Web App Frontend node to reduce initial bundle size and improve landing page load time. - (M) (1 hours)\[FD\]
+        
+    -   Add service worker with Workbox in the Web App Frontend node to enable caching of landing page assets and offline support for PWA capabilities. - (M) (1 hours)\[FD\]
+        
+    -   Integrate Google Analytics via gtag.js in the Web App Frontend node to track user visits and page views on the landing page with event logging. - (S) (0.5 hours)\[FD\]
+        
+    -   Create backend API endpoint to aggregate landing page analytics data and expose via REST API in the API Backend node for dashboard consumption. - (S) (0.5 hours)\[BD\]
+        
+-   **User Registration with Email and Password:** As a new user, I want to register an account using my email and password so that I can securely access the brand building platform.**(11 hours)** - User can enter email and password on the registration form. - Password must meet security criteria (minimum length, complexity). - User receives confirmation of successful registration. - User data is securely stored in the database. - Duplicate email registrations are prevented.
+    
+    -   Design user schema with email, hashed password, and timestamps using MongoDB schema in the user\_database node for secure credential storage. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /register endpoint with input validation, password hashing (bcrypt), and error handling in the auth\_registration\_endpoint node. - (M) (3.5 hours)\[BD\]
+        
+    -   Create registration logic in auth\_service node to verify email uniqueness, hash password securely, and save user data to user\_database node. - (M) (4 hours)\[BD\]
+        
+    -   Write unit and integration tests for registration flow covering validation, hashing, DB writes, and error cases in auth\_registration\_endpoint and auth\_service nodes. - (S) (2 hours)\[QA\]\[BD\]
+        
+-   **User Login with Email and Password:** As a registered user, I want to log in using my email and password so that I can access my dashboard and projects securely.**(7.5 hours)** - User can enter email and password on the login form. - Credentials are validated against stored data. - Successful login redirects user to the dashboard. - Failed login attempts show appropriate error messages. - Implement rate limiting to prevent brute force attacks.
+    
+    -   Implement POST /login endpoint with rate limiting and input validation using Express.js middleware in the auth\_login\_endpoint node to handle email/password login requests securely. - (M) (3 hours)\[BD\]
+        
+    -   Create authentication logic in the auth\_service node using bcrypt for password verification and JWT for token issuance with 1h expiry, integrating user\_database queries. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for login flow covering input validation, rate limiting, password check, and JWT token generation in auth\_login\_endpoint and auth\_service nodes. - (S) (1.5 hours)\[QA\]
+        
+-   **Password Reset via Email:** As a user who forgot my password, I want to reset it via a secure email link so that I can regain access to my account.**(11 hours)** - User can request a password reset by entering their registered email. - System sends a secure, time-limited reset link to the email. - User can set a new password via the link. - Password reset enforces the same security criteria as registration. - Confirmation message is shown after successful reset.
+    
+    -   Design secure password reset token schema with expiration and user linkage in the user\_database node using MongoDB TTL indexes and hashed tokens for security. - (M) (3 hours)\[BD\]\[DBA\]
+        
+    -   Implement POST /password-reset-request endpoint in the auth\_password\_reset\_endpoint node to accept user email, generate reset token, store it, and send secure reset email using JWT and REST API. - (M) (3 hours)\[BD\]
+        
+    -   Create GET /password-reset-verify endpoint in auth\_password\_reset\_endpoint node to validate token, check expiration, and allow password reset form rendering securely. - (S) (2 hours)\[BD\]
+        
+    -   Implement password update logic in auth\_service node using secure hashing (e.g. bcrypt), validate token, update user password in user\_database node, and invalidate token post-reset. - (M) (3 hours)\[BD\]
+        
+-   **Email Verification after Registration:** As a new user, I want to verify my email address after registration to confirm my identity and activate my account.**(9 hours)** - After registration, user receives a verification email with a unique link. - Clicking the link verifies the email and activates the account. - Unverified accounts cannot log in. - Verification link expires after a set time. - User can request resending the verification email.
+    
+    -   Design MongoDB user schema with emailVerified boolean and verificationToken fields in the user\_database node to store verification status and tokens securely. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /verify-email endpoint in the auth\_email\_verification\_endpoint node to validate tokens, update emailVerified flag in user\_database, and handle expired or invalid tokens with error responses. - (M) (3 hours)\[BD\]
+        
+    -   Create email verification token generation and sending logic using JWT signed tokens and Nodemailer in auth\_service node triggered post-registration to send verification links. - (M) (3 hours)\[BD\]
+        
+    -   Develop resend verification email API in auth\_email\_verification\_endpoint node with rate limiting and token regeneration, integrating with user\_database to update tokens securely. - (S) (1.5 hours)\[BD\]
+        
+
+### **Milestone 3: Core features for Audience Research phase including persona creation, competitor analysis, AI insights, and report export.**
+
+_Estimated 44.5 hours_
+
+-   **Persona Creation Tool with AI Assistance:** As a user, I want to input basic demographic and psychographic data so that the app can generate detailed customer personas using AI, supporting multiple segments with visual persona cards.**(10 hours)** - User can input demographic and psychographic data. - AI generates detailed personas based on input. - Multiple persona segments can be created and viewed. - Personas are displayed as visual cards. - Personas can be edited and saved.
+    
+    -   Design and implement the persona input data schema with fields for demographics and psychographics using JSON Schema in the persona\_schema node to validate user inputs for persona creation. - (S) (2 hours)\[BD\]
+        
+    -   Create REST API POST /personas endpoint in the persona\_creation\_endpoint node to receive user input, validate against persona\_schema, and trigger AI generation of detailed personas using OpenAI GPT-4 API integration. - (M) (4 hours)\[BD\]
+        
+    -   Implement MongoDB persistence logic in project\_database node to store user inputs and AI-generated persona data with schema validation and indexing for efficient retrieval. - (M) (3 hours)\[DBA\]\[BD\]
+        
+    -   Develop API response formatting in persona\_creation\_endpoint node to return multiple visual persona cards with demographic and psychographic details for frontend rendering. - (S) (1 hours)\[BD\]
+        
+-   **Competitor Analysis Interface with AI Summary:** As a user, I want to list competitor names and URLs so that the AI can summarize each competitor and produce a comparative table highlighting positioning, tone, price points, and other key attributes.**(12.5 hours)** - User can input competitor names and URLs. - AI summarizes competitor information. - Comparative table is generated showing key attributes. - Table is sortable and filterable. - Data can be saved and updated.
+    
+    -   Design MongoDB schema for competitor data including name, URL, positioning, tone, price points using Mongoose models in the competitor\_schema node - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /api/competitors endpoint to accept competitor names and URLs, validate input with Joi, and store in MongoDB using Express.js in the competitor\_analysis\_endpoint node - (M) (3 hours)\[BD\]
+        
+    -   Integrate OpenAI GPT-4 API call in competitor\_analysis\_endpoint node to generate AI summaries for each competitor after data submission using async/await and error handling - (M) (3 hours)\[BD\]
+        
+    -   Create GET /api/competitors/summary endpoint to return AI-generated comparative table with positioning, tone, price points from MongoDB aggregation in competitor\_analysis\_endpoint node - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for competitor API endpoints using Jest and Supertest in competitor\_analysis\_endpoint node to ensure data validation, AI summary generation, and response correctness - (S) (2 hours)\[QA\]
+        
+-   **Audience Research Report Export:** As a user, I want to export a comprehensive Audience Research Report in PDF or Word format that collates personas, market trends, and competitor tables for sharing and documentation.**(11 hours)** - User can trigger report export with one click. - Report includes all personas, competitor analysis, and insights. - Exported report is well-formatted and professional. - Supports PDF and Word formats. - Exported files can be saved or shared.
+    
+    -   Design MongoDB schema for personas, market trends, and competitor tables using Mongoose in the audience\_research\_report\_schema node to structure report data for export. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST API POST /export-report endpoint in audience\_research\_report\_export\_endpoint node using Express.js to generate and return PDF/Word reports from stored report data. - (M) (4 hours)\[BD\]
+        
+    -   Integrate Puppeteer in audience\_research\_report\_export\_endpoint node to convert HTML report templates into PDF and Word formats for export functionality. - (S) (2 hours)\[BD\]
+        
+    -   Write unit and integration tests using Jest in audience\_research\_report\_export\_endpoint node to validate report generation API and export formats correctness. - (S) (2 hours)\[QA\]
+        
+-   **AI-Driven Research Insights Generation:** As a user, I want the app to provide AI-driven insights as I enter data, such as key audience traits or competitor gaps, to gain immediate value and understanding.**(11 hours)** - AI analyzes entered persona and competitor data. - Provides real-time insights and key findings. - Insights are displayed clearly in the UI. - User can refresh or request new insights. - Insights update dynamically with data changes.
+    
+    -   Design MongoDB schema for storing AI-generated insights and key findings with fields for persona traits and competitor gaps in the research\_insights\_schema node using Mongoose schema definitions. - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /insights API endpoint using Express.js to receive user data, invoke OpenAI GPT-4 for AI-driven insights, and store results in research\_insights\_schema in the research\_insights\_endpoint node. - (M) (4 hours)\[BD\]
+        
+    -   Create service layer logic to parse user input data, format prompts, and handle OpenAI GPT-4 API calls with error handling and rate limiting in the research\_insights\_endpoint node. - (S) (2 hours)\[BD\]
+        
+    -   Develop integration tests for POST /insights endpoint validating AI insight generation and database persistence using Jest and Supertest in the research\_insights\_endpoint node. - (S) (2 hours)\[QA\]
+        
+
+### **Milestone 4: Brand Strategy phase with mission/vision wizard, values & personality selection, and strategy document export.**
+
+_Estimated 50 hours_
+
+-   **Mission and Vision Interactive Wizard:** As a user, I want an interactive wizard to define the brand's Why (purpose), How (mission), and What (vision/goals) so that I can create clear foundational brand statements with AI assistance.**(12.5 hours)** - The wizard prompts best-practice questions for Why, How, and What. - AI drafts concise mission and vision statements based on user inputs. - Users can edit and finalize the statements. - The wizard saves the statements for use in later phases.
+    
+    -   Design MongoDB schema for mission, vision, and purpose fields with validation rules in the brand\_strategy\_schema node to store user inputs and AI-generated drafts securely. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement REST API POST /wizard/mission-vision endpoint in the brand\_strategy\_wizard\_endpoint node to accept user inputs, validate with Joi, and store in project\_database with AI draft generation trigger. - (M) (3 hours)\[BD\]
+        
+    -   Integrate OpenAI GPT-4 API call in brand\_strategy\_wizard\_endpoint node to auto-generate concise mission and vision drafts based on user inputs using prompt templates and handle response parsing. - (M) (3.5 hours)\[BD\]
+        
+    -   Create validation middleware using Joi in brand\_strategy\_wizard\_endpoint node to ensure mission and vision inputs meet length and content criteria before database storage. - (S) (1.5 hours)\[BD\]
+        
+    -   Write unit and integration tests using Jest in brand\_strategy\_wizard\_endpoint node to cover mission/vision input validation, API endpoint behavior, and AI draft generation logic. - (M) (3 hours)\[QA\]\[BD\]
+        
+-   **Core Values and Brand Personality Selection:** As a user, I want to select 3-5 core values from examples or freeform input and choose tone adjectives or an archetype to define brand personality, so that the app can generate a narrative and usage guidelines.**(13 hours)** - Users can pick core values from predefined examples or enter custom values. - Users select tone adjectives or archetypes (e.g., friendly, formal). - AI generates a short brand personality narrative and dos/don'ts guidelines. - The narrative and guidelines are editable and saved for export.
+    
+    -   Design MongoDB schema for core values, tone adjectives, and archetype fields in the brand\_strategy\_schema node using Mongoose models with validation for 3-5 values and optional freeform input. - (M) (3 hours)\[BD\]
+        
+    -   Create REST API POST /brand/personality endpoint in brand\_values\_personality\_endpoint node to accept core values, tone adjectives, archetype; validate input and store in project\_database with references to brand\_strategy\_schema. - (M) (3 hours)\[BD\]
+        
+    -   Implement AI narrative generation service in brand\_values\_personality\_endpoint node using OpenAI GPT-4 API to create brand personality narrative and usage guidelines from selected values and tone. - (L) (5 hours)\[BD\]
+        
+    -   Build React form component with controlled inputs for selecting 3-5 core values, tone adjectives, and archetype using React Hook Form in brand\_values\_personality\_endpoint node; integrate with POST API and handle validation errors. - (S) (2 hours)\[FD\]
+        
+-   **Brand Strategy Document Export:** As a user, I want to export all brand strategy inputs (mission, vision, values, tone) into an editable PDF, Word, or Google Doc so that I have a comprehensive brand blueprint document.**(14.5 hours)** - The export compiles mission, vision, core values, and tone narrative. - Supports export formats: PDF, Word, Google Doc. - Document is editable and formatted professionally. - Export includes persona insights from Phase 1 for context. - Export functionality is accessible from the Phase 2 interface.
+    
+    -   Design MongoDB schema for brand strategy data (mission, vision, values, tone) using Mongoose models in the brand\_strategy\_schema node to support export functionality. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement REST API GET /export/brand-strategy endpoint in the brand\_strategy\_document\_export\_endpoint node to fetch brand strategy data from project\_database and format JSON response. - (M) (3 hours)\[BD\]
+        
+    -   Create HTML template for brand strategy document export using Handlebars or EJS in the brand\_strategy\_document\_export\_endpoint node, including mission, vision, values, and tone sections. - (M) (3 hours)\[BD\]
+        
+    -   Integrate Puppeteer in the brand\_strategy\_document\_export\_endpoint node to convert HTML brand strategy template to PDF and Word formats, enabling downloadable exports. - (M) (3 hours)\[BD\]
+        
+    -   Implement Google Docs API integration in the brand\_strategy\_document\_export\_endpoint node to enable one-click export of brand strategy documents to Google Docs with OAuth authentication. - (L) (4 hours)\[BD\]
+        
+-   **Mission and Vision Auto-Draft Using AI:** As a user, I want the app to auto-draft mission and vision statements using AI based on my inputs and best-practice templates, so I can quickly generate professional brand statements.**(10 hours)** - AI generates draft mission and vision statements from user inputs. - Drafts are editable by the user. - The system uses predefined Golden Circle templates. - AI suggestions improve with user feedback. - Auto-draft is integrated into the Mission and Vision Wizard.
+    
+    -   Design MongoDB schema for mission and vision fields with validation rules in the brand strategy schema node to store user inputs and AI-generated drafts securely. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /auto-draft endpoint using OpenAI GPT-4 API integration in the mission and vision auto-draft endpoint node to generate mission and vision statements from user inputs and templates. - (M) (3.5 hours)\[BD\]
+        
+    -   Create service method to save AI-generated mission and vision drafts into project database with transactional integrity in the project database node using MongoDB transactions. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for AI auto-draft endpoint and database save logic using Python unittest and mock OpenAI calls in the mission and vision auto-draft endpoint node. - (S) (2 hours)\[QA\]\[BD\]
+        
+
+### **Milestone 5: Brand Identity phase featuring name generator, voice/tone selection, story & messaging, and identity brief export.**
+
+_Estimated 52 hours_
+
+-   **AI-Powered Brand Name Generator with Filtering and Favorites:** As a user, I want an AI-powered tool that generates brand name ideas based on keywords, industry, and values, with filters for naming style (literal vs. inventive), so that I can find suitable brand names and favorite them for later consideration.**(12 hours)** - User inputs keywords, industry, and values. - User can filter name suggestions by naming style (literal or inventive). - AI generates a list of brand name ideas. - User can favorite names to save them. - User can check name availability via an external link (e.g., Namechk). - The UI is responsive and intuitive.
+    
+    -   Design MongoDB schema for brand names, filters, and favorites using Mongoose models in the project\_database node to store user inputs and AI-generated name data with indexing for efficient filtering. - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /generate-names API endpoint using OpenAI GPT-4 with keyword, industry, values input and naming style filters in the name\_generator\_endpoint node; return filtered AI-generated brand name suggestions. - (M) (4 hours)\[BD\]
+        
+    -   Create REST API endpoints for saving, retrieving, and deleting favorite brand names using Express.js routes with JWT auth in the project\_database node to manage user favorites securely. - (S) (2 hours)\[BD\]
+        
+    -   Integrate AI-generated brand names and favorites management with project\_database schema using aggregation queries for filtering by naming style in the name\_generator\_endpoint node to support frontend filtering UI. - (M) (3 hours)\[FSD\]
+        
+-   **Voice and Tone Selection UI with Brand Voice Profile Generation:** As a user, I want to select voice attributes such as personality traits and archetypes, adjust sliders for tone dimensions (Formal-Casual, Playful-Serious), and receive an AI-generated Brand Voice Profile with example do's and don'ts, so that I can define a consistent brand voice.**(11 hours)** - User can select personality traits and archetypes. - User can adjust sliders for key tone dimensions. - AI generates a Brand Voice Profile based on selections. - Profile includes example do's and don'ts. - UI is user-friendly and accessible.
+    
+    -   Design MongoDB schema for voice attributes, tone sliders, and brand voice profile storage using Mongoose models in the brand\_identity\_schema node. - (S) (2 hours)\[BD\]
+        
+    -   Implement REST POST /voice-tone/select endpoint to accept voice traits, slider values, and trigger AI profile generation using OpenAI GPT-4 in the voice\_tone\_selection\_endpoint node. - (M) (4 hours)\[BD\]
+        
+    -   Create React form with controlled inputs for personality traits, archetypes, and sliders using useState and useEffect hooks in the voice\_tone\_selection\_endpoint node. - (S) (2 hours)\[FD\]
+        
+    -   Integrate AI-generated Brand Voice Profile response storage and retrieval with MongoDB in project\_database node, linking user selections and profile data. - (M) (3 hours)\[FSD\]
+        
+-   **Guided Story and Messaging Framework with AI Narrative Generation:** As a user, I want a guided framework to input story elements (hero, customer need, brand solution, transformation) and have AI generate a cohesive brand narrative and extract key messaging themes, so that I can craft compelling brand messaging.**(16 hours)** - User is prompted for story elements. - AI generates a cohesive brand narrative. - Key messaging themes (pillars/benefits) are extracted. - User can review and edit the generated story. - UI guides the user through the process intuitively.
+    
+    -   Design MongoDB schema for story elements (hero, need, solution, transformation) and messaging themes in the brand\_identity\_schema node using Mongoose models with validation. - (S) (2 hours)\[BD\]
+        
+    -   Create REST POST /story-input endpoint in story\_messaging\_framework\_endpoint node to accept story elements JSON, validate input with Joi, and store raw data in project\_database node. - (M) (3 hours)\[BD\]
+        
+    -   Integrate OpenAI GPT-4 API call in story\_messaging\_framework\_endpoint node to generate brand narrative and extract messaging themes from stored story elements using async/await and error handling. - (M) (4 hours)\[BD\]
+        
+    -   Implement service logic in story\_messaging\_framework\_endpoint node to transform AI output into structured messaging themes and narrative objects, then save to brand\_identity\_schema node. - (M) (3 hours)\[BD\]
+        
+    -   Build React form component with controlled inputs for hero, need, solution, transformation using React Hook Form in story\_messaging\_framework\_endpoint node for guided story input UI. - (S) (2 hours)\[FD\]
+        
+    -   Write Jest unit tests for API endpoints and service logic in story\_messaging\_framework\_endpoint node, mocking OpenAI GPT-4 calls and MongoDB interactions for coverage. - (S) (2 hours)\[QA\]
+        
+-   **Identity Brief Auto-Compilation and Export:** As a user, I want the system to auto-compile all brand identity outputs (chosen name, voice traits, story summary, tagline) into a structured Brand Identity Brief document and allow one-click export to PDF or Word, so that I can easily share a professional brand identity summary.**(13 hours)** - System compiles name, voice profile, story summary, and tagline. - User can export the brief as PDF or Word. - Exported document is well-formatted and professional. - Export respects branding and style guidelines. - UI provides clear export options.
+    
+    -   Design and implement brand identity data schema extensions in the brand\_identity\_schema node to store chosen name, voice traits, story summary, and tagline with proper indexing for efficient retrieval. - (M) (3 hours)\[BD\]
+        
+    -   Create REST API endpoint GET /identity-brief/export in the identity\_brief\_export\_endpoint node to aggregate brand identity data from project\_database and brand\_identity\_schema nodes for export. - (M) (3.5 hours)\[BD\]
+        
+    -   Implement HTML template generation for the Brand Identity Brief in the identity\_brief\_export\_endpoint node using server-side templating with dynamic insertion of name, voice, story, and tagline data. - (S) (2 hours)\[BD\]
+        
+    -   Integrate Puppeteer in the identity\_brief\_export\_endpoint node to convert generated HTML Brand Identity Brief into downloadable PDF and Word formats with one-click export functionality. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for the identity brief export API in the identity\_brief\_export\_endpoint node covering data aggregation, template rendering, and PDF/Word export correctness. - (S) (1.5 hours)\[QA\]
+        
+
+### **Milestone 6: Brand Positioning phase including USP identification, positioning statement builder, and brief inclusion.**
+
+_Estimated 44 hours_
+
+-   **USP Identification with AI Analysis:** As a user, I want to answer interactive prompts about what my brand offers uniquely so that the AI can analyze competitor data and audience gaps to suggest a compelling Unique Selling Proposition (USP).**(13 hours)** - User is presented with clear prompts about unique brand offerings. - AI analyzes competitor and audience data to generate USP suggestions. - User can review and select or refine the suggested USP. - The USP is saved and linked to the current brand project.
+    
+    -   Design MongoDB schema for USP data including user inputs, competitor analysis results, and AI suggestions in the brand\_positioning\_schema node using Mongoose models with validation rules. - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /api/usp/analyze endpoint using Express.js in the usp\_identification\_endpoint node to accept user prompts, fetch competitor and audience data from project\_database, and invoke AI analysis service. - (M) (4 hours)\[BD\]
+        
+    -   Create AI analysis module using OpenAI GPT-4 API in usp\_identification\_endpoint node to process competitor and audience data, generate USP suggestions, and return structured results for frontend consumption. - (M) (4 hours)\[AI\]\[BD\]
+        
+    -   Develop integration logic in usp\_identification\_endpoint node to store AI-generated USP suggestions and user inputs into brand\_positioning\_schema and project\_database nodes using atomic transactions for data consistency. - (S) (2 hours)\[BD\]
+        
+-   **Positioning Statement Builder Wizard:** As a user, I want a form-driven wizard that helps me create a clear and concise positioning statement using fill-in-the-blank templates, with AI suggestions to refine phrasing and brevity.**(13 hours)** - User accesses a wizard with fill-in-the-blank fields for positioning statement components. - AI provides real-time phrasing suggestions as the user types. - User can save, edit, and finalize the positioning statement. - The statement is validated for clarity and brevity. - The statement is linked to the brand project and available for export.
+    
+    -   Design MongoDB schema for positioning statements, USPs, and key differentiators using Mongoose in the brand positioning schema node to support structured storage and retrieval. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST POST /positioning-statement endpoint with input validation and AI phrasing suggestions using OpenAI GPT-4 in the positioning statement builder endpoint node. - (M) (4 hours)\[BD\]
+        
+    -   Create form-driven wizard backend logic to handle multi-step user inputs and save draft positioning statements in project database node using Django ORM transaction management. - (M) (4 hours)\[BD\]
+        
+    -   Develop AI refinement service integration in positioning statement builder endpoint node using OpenAI GPT-4 completions API to provide real-time phrasing and brevity suggestions. - (S) (2 hours)\[BD\]
+        
+-   **Include Positioning Statement in Brand Brief:** As a user, I want the final positioning statement and key differentiators to be automatically included in the brand brief document so that I can export a comprehensive brand positioning summary.**(10 hours)** - The brand brief document includes the finalized positioning statement. - Key differentiators and USP are summarized in the brief. - Export formats include PDF and Word. - The brief is consistent with other phase outputs. - User can trigger export from the Phase 4 interface.
+    
+    -   Design and update brand positioning schema to include fields for positioning statement and key differentiators using MongoDB schema definitions in the brand positioning schema node. - (M) (3 hours)\[BD\]
+        
+    -   Create REST API endpoint POST /include-positioning in positioning statement inclusion endpoint node to accept positioning statement and key differentiators, validate input, and update brand brief data in project database node. - (M) (3 hours)\[BD\]
+        
+    -   Implement service logic in positioning statement inclusion endpoint node to fetch brand brief data from project database node, merge positioning statement and differentiators, and prepare data for export generation. - (S) (2 hours)\[BD\]
+        
+    -   Write unit and integration tests for positioning statement inclusion endpoint POST /include-positioning and schema updates using Jest and Supertest in positioning statement inclusion endpoint and brand positioning schema nodes. - (S) (2 hours)\[QA\]
+        
+-   **Basic UI and Data Integration for Brand Positioning Phase:** As a user, I want a clean, intuitive UI that integrates Phase 1-3 data inputs (personas, competitor insights, brand identity) to support USP identification and positioning statement creation.**(8 hours)** - UI displays relevant data from previous phases to inform positioning. - User can navigate easily between USP and statement builder. - Data integration is seamless and updates in real-time. - UI is responsive and accessible. - Basic error handling for missing or incomplete data.
+    
+    -   Design MongoDB schema for brand positioning data including USP, positioning statements, and key differentiators using Mongoose models in the brand\_positioning\_schema node. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST API GET endpoint in positioning\_phase\_data\_integration\_endpoint node to fetch integrated Phase 1-3 data (personas, competitor insights, brand identity) using Express.js and MongoDB aggregation pipeline. - (M) (3 hours)\[BD\]
+        
+    -   Build React form component with controlled inputs and validation using React Hook Form in the positioning\_phase\_data\_integration\_endpoint node to capture USP and positioning statement drafts. - (S) (1.5 hours)\[FD\]
+        
+    -   Integrate frontend React component with backend REST API in positioning\_phase\_data\_integration\_endpoint node using Axios for data fetching and submission with error handling and loading states. - (S) (0.5 hours)\[FSD\]
+        
+
+### **Milestone 7: Visual Identity phase with logo wizard, color palette generator, typography/icon suggestions, and style guide export.**
+
+_Estimated 55.5 hours_
+
+-   **Logo Wizard: Generate and Edit Logo Concepts:** As a user, I want to generate multiple logo concepts by selecting styles (wordmark, icon, abstract) and providing brand name, tagline, and keywords, so that I can visualize and choose a fitting logo for my brand. I also want to be able to make simple edits like swapping colors and adjusting icons to refine the logo.**(18 hours)** - User can select logo style categories. - User inputs brand name, tagline, and keywords. - System generates multiple logo mockups using AI image generation (e.g. DALL-E 3). - User can preview generated logos. - User can edit logos by swapping colors and adjusting icons. - Changes are saved and reflected in the project.
+    
+    -   Design MongoDB schema for logo concepts including styles, brand name, tagline, keywords, and user edits in the visual\_identity\_schema node using Mongoose models with validation. - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /generate-logo API endpoint in the logo\_generation\_endpoint node using OpenAI DALL-E 3 API to generate logo concepts from style, brand name, tagline, and keywords inputs. - (M) (4 hours)\[BD\]
+        
+    -   Create PUT /edit-logo/:id API endpoint in the logo\_generation\_endpoint node to update logo colors and icons with validation and partial updates using Express.js and MongoDB. - (S) (2 hours)\[BD\]
+        
+    -   Build React form component for logo style selection, brand name, tagline, and keywords input with validation using React Hook Form in the visual\_identity\_schema node. - (S) (2 hours)\[FD\]
+        
+    -   Develop UI controls for simple logo edits like color swapping and icon adjustments using React state hooks and context API in the visual\_identity\_schema node. - (M) (3 hours)\[FD\]
+        
+    -   Integrate logo generation and edit APIs with frontend form and controls using Axios for REST calls and React Query for state management in the visual\_identity\_schema node. - (M) (4 hours)\[FSD\]
+        
+-   **Color Palette Generator with AI Suggestions:** As a user, I want the app to suggest 3-5 cohesive color palettes based on brand personality, mood keywords, or sample images, so that I can select or tweak a color scheme that fits my brand identity.**(14.5 hours)** - User inputs mood keywords or uploads sample images. - System generates multiple color palette suggestions using AI. - User can preview and select palettes. - User can tweak colors within the palette. - Selected palette is saved and applied to the brand identity.
+    
+    -   Design MongoDB schema for storing color palettes with attributes for brand personality, mood keywords, and palette colors in the visual\_identity\_schema node using Mongoose models. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /generate-palettes API endpoint using Express.js in the color\_palette\_generator\_endpoint node to accept brand personality and mood keywords, call AI model for palette suggestions, and return 3-5 palettes. - (M) (3.5 hours)\[BD\]
+        
+    -   Create service layer in color\_palette\_generator\_endpoint node to integrate OpenAI GPT-4 API for generating color palettes based on input keywords and parse AI response into palette objects. - (M) (3 hours)\[BD\]
+        
+    -   Implement CRUD operations for saving and retrieving user-selected palettes in project\_database node using MongoDB aggregation pipelines and Mongoose queries. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for palette generation API and database operations using Jest and Supertest in color\_palette\_generator\_endpoint and project\_database nodes. - (S) (2 hours)\[QA\]
+        
+    -   Deploy color palette generation service with environment variables for AI API keys and MongoDB connection strings using Docker containers in color\_palette\_generator\_endpoint and project\_database nodes. - (S) (1.5 hours)\[DO\]
+        
+-   **Style Guide Auto-Generation and Export:** As a user, I want to automatically generate a style guide PDF that includes the chosen logo, color palette with codes, typography, icon styles, and usage rules, so that I have a comprehensive document capturing my brand's visual identity for sharing and reference.**(13 hours)** - System compiles logo, color palette, typography, and icon styles into a style guide. - Style guide includes usage rules and color codes. - User can export the style guide as PDF. - Exported document is well-formatted and professional. - Style guide updates dynamically as visual identity elements change.
+    
+    -   Design visual identity schema for logos, color palettes, typography, and icon styles using JSON schema validation in the visual\_identity\_schema node to standardize style guide data structure. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST API GET /style-guide/export endpoint using Express.js in the style\_guide\_export\_endpoint node to fetch visual identity data from project\_database and generate style guide content dynamically. - (M) (4 hours)\[BD\]
+        
+    -   Integrate Puppeteer to convert HTML style guide templates into PDF in the style\_guide\_export\_endpoint node, including logo, color codes, typography, and usage rules with dynamic data from visual\_identity\_schema. - (M) (4 hours)\[FSD\]
+        
+    -   Create unit and integration tests for style guide export API and PDF generation using Jest and Supertest in the style\_guide\_export\_endpoint node to ensure data accuracy and export reliability. - (S) (2 hours)\[QA\]
+        
+-   **Typography and Icon Style Recommendations:** As a user, I want to receive suggested font pairings and icon styles that match my brand's visual identity, so that I can maintain consistency in typography and iconography across my brand materials.**(10 hours)** - System suggests font pairings based on brand personality and logo style. - System recommends icon styles consistent with the brand identity. - User can preview suggested fonts and icons. - Suggestions can be exported or saved for later use.
+    
+    -   Design visual identity schema for typography and icon styles including font families, weights, sizes, and icon style metadata in the visual\_identity\_schema node using JSON schema definitions. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST API GET /typography-icons endpoint to fetch font pairings and icon style suggestions based on brand visual identity in the typography\_icon\_recommendations\_endpoint node using Express.js. - (M) (3 hours)\[BD\]
+        
+    -   Create service logic to query visual\_identity\_schema for brand fonts and icons, apply Google Fonts API to suggest font pairings, and return icon style metadata in typography\_icon\_recommendations\_endpoint node. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for typography and icon recommendation API endpoints using Jest and Supertest in typography\_icon\_recommendations\_endpoint node to ensure correct font pairing and icon style responses. - (S) (1 hours)\[QA\]
+        
+
+### **Milestone 8: Project completion and export process followed by a summary dashboard showing key brand assets and documents, with options to duplicate, archive, or start new projects, plus suggested next steps.**
+
+_Estimated 93.5 hours_
+
+-   **Project Completion Overview and Summary:** As a user, I want to see a clear summary overview of my entire brand building project including all phases and key deliverables so that I can review my work before finalizing the project.**(9 hours)** - User can access a project summary page showing all phases completed and pending. - Summary includes key outputs like personas, strategy documents, brand names, positioning statements, and visual assets. - User can navigate from summary to any phase for review or edits. - Summary updates dynamically as user progresses.
+    
+    -   Design MongoDB schema for project phases, deliverables, and metadata in the project\_database node using Mongoose models with references for efficient aggregation queries. - (M) (3 hours)\[BD\]
+        
+    -   Implement GET /api/project-summary endpoint in the project\_summary\_endpoint node to aggregate project phases and deliverables from project\_database using MongoDB aggregation pipeline and return JSON summary. - (M) (3 hours)\[BD\]
+        
+    -   Create service layer in project\_summary\_endpoint node to fetch and format project data from project\_database, ensuring efficient data retrieval and error handling for summary overview. - (S) (1.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for project summary aggregation and API response in project\_summary\_endpoint node using Jest and Supertest to ensure data accuracy and endpoint reliability. - (S) (1.5 hours)\[QA\]
+        
+-   **Multi-Format Export of Brand Deliverables:** As a user, I want to export my entire brand building project deliverables in multiple formats (PDF, Word, Google Docs) so that I can share and use the documents easily.**(13 hours)** - User can select export format (PDF, Word, Google Docs). - Export includes all relevant documents: audience research report, brand strategy, identity brief, positioning statement, and style guide. - Exported documents maintain formatting and include all user inputs and AI-generated content. - Export process handles large documents efficiently and provides progress feedback. - User can download or save directly to Google Docs via API integration.
+    
+    -   Design MongoDB schema extensions for storing export metadata and document templates in the project\_database node using Mongoose schema methods and indexes for efficient retrieval. - (S) (2 hours)\[BD\]
+        
+    -   Implement REST API POST /export endpoint in the project\_deliverables\_export\_endpoint node using Express.js to generate export jobs, accept format params (PDF, Word, Google Docs), and queue tasks with Celery for async processing. - (M) (4 hours)\[BD\]
+        
+    -   Create export service in the project\_deliverables\_export\_endpoint node using Puppeteer for HTML-to-PDF conversion, docx library for Word exports, and Google Docs API for cloud doc creation with OAuth token management. - (M) (5 hours)\[BD\]
+        
+    -   Develop export status and download endpoints in the project\_deliverables\_export\_endpoint node with JWT-secured REST API routes to fetch export job status and deliver generated files to authenticated users. - (S) (2 hours)\[BD\]
+        
+-   **Project Completion Confirmation and Status Update:** As a user, I want to mark my project as complete and receive confirmation so that I know my project is finalized and saved securely.**(7.5 hours)** - User can click a 'Complete Project' button on the summary page. - System validates that all required phases have sufficient data. - User receives a confirmation message and project status updates to 'Completed'. - Completed projects are locked from further edits unless reopened. - User can reopen a completed project if needed.
+    
+    -   Design MongoDB schema updates for project status and completion timestamp fields in the project\_database node to track project completion state and history. - (S) (1.5 hours)\[BD\]\[DBA\]
+        
+    -   Implement POST /api/projects/\[id\]/complete endpoint with validation and status locking logic in the project\_completion\_endpoint node using Express.js and JWT for user auth. - (M) (3 hours)\[BD\]
+        
+    -   Create confirmation response with project completion status and timestamp in JSON format in the project\_completion\_endpoint node; ensure error handling for invalid states. - (S) (1.5 hours)\[BD\]
+        
+    -   Develop backend logic to update project status to complete and lock editing in the project\_database node triggered by project\_completion\_endpoint node API calls. - (M) (1.5 hours)\[BD\]
+        
+-   **Download and Archive Project Package:** As a user, I want to download a complete archive package of my project including all files, images, and documents so that I can keep a local backup or transfer it elsewhere.**(10 hours)** - User can initiate a 'Download Project Package' action. - System compiles all project assets into a single compressed archive (e.g. ZIP). - Archive includes all documents, images (logos, palettes), and metadata. - User receives download link or file directly. - Archive is structured for easy offline access and future imports.
+    
+    -   Design MongoDB schema queries to aggregate all project files, images, and documents by project ID in the project\_database node for archive compilation. - (M) (3 hours)\[BD\]\[DBA\]
+        
+    -   Implement REST API GET /api/projects/\[id\]/archive endpoint in the project\_archive\_download\_endpoint node to fetch project data and stream zipped archive to client. - (M) (3 hours)\[BD\]
+        
+    -   Integrate Node.js archiver library in the project\_archive\_download\_endpoint node to compress project files dynamically before sending archive response. - (S) (2 hours)\[BD\]
+        
+    -   Write unit and integration tests for archive generation and download API in the project\_archive\_download\_endpoint node using Jest and Supertest. - (S) (2 hours)\[QA\]\[BD\]
+        
+-   **Display Project Summary Dashboard After Completion:** As a user who has completed and exported a brand project, I want to see a clear summary dashboard that highlights key brand assets and documents so that I can quickly review my work and next steps.**(6 hours)** - Upon project completion and export, the user is redirected to the Project Summary Dashboard. - The dashboard displays a summary of key brand assets such as brand name, voice profile, story summary, and tagline. - The dashboard lists all exported documents with download links. - The dashboard UI is clear, visually organized, and responsive.
+    
+    -   Design REST GET /api/project-summary endpoint to fetch completed project assets and documents using Express.js router in the project\_summary\_dashboard\_endpoint node with pagination and filtering support. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement data aggregation logic in project\_summary\_dashboard\_endpoint node using MongoDB aggregation pipeline to summarize key brand assets and export documents for dashboard display. - (M) (2 hours)\[BD\]\[DBA\]
+        
+    -   Create JSON response schema for project summary including logo URLs, color palettes, and export links in project\_summary\_dashboard\_endpoint node using OpenAPI spec for frontend integration. - (S) (1.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for project summary endpoint using Jest and Supertest in project\_summary\_dashboard\_endpoint node to ensure accurate data retrieval and response format. - (S) (1 hours)\[QA\]\[BD\]
+        
+-   **Enable Project Duplication from Summary Dashboard:** As a user on the Project Summary Dashboard, I want to duplicate my completed brand project so that I can create a new project based on the existing one without starting from scratch.**(8 hours)** - The dashboard includes a 'Duplicate Project' button. - Clicking the button creates a new project with all data copied from the current project. - The user is redirected to the new project's starting point. - Duplication handles all relevant data including brand assets and documents.
+    
+    -   Design and implement POST /api/projects/duplicate endpoint using Express.js in the project\_management\_endpoint node to clone project data including metadata and associated assets with validation and error handling. - (M) (3 hours)\[BD\]
+        
+    -   Create service layer function in project\_management\_endpoint node to deep copy project documents and related collections in MongoDB ensuring referential integrity and unique IDs for the duplicated project. - (M) (2.5 hours)\[BD\]
+        
+    -   Implement client-side API call from Project Summary Dashboard using fetch with POST to /api/projects/duplicate and handle UI state updates in the project\_management\_endpoint node integration. - (S) (1.5 hours)\[FSD\]
+        
+    -   Write unit and integration tests for project duplication endpoint and service functions using Jest and Supertest in the project\_management\_endpoint node to ensure data integrity and error handling. - (S) (1 hours)\[QA\]
+        
+-   **Implement Project Archiving from Summary Dashboard:** As a user on the Project Summary Dashboard, I want to archive completed projects so that I can keep my workspace organized without deleting important work.**(3.5 hours)** - The dashboard shows an 'Archive Project' option for each completed project. - Archiving moves the project to an archived state, removing it from active project lists. - Archived projects can be accessed from a separate archive view. - Archiving does not delete project data permanently.
+    
+    -   Design and implement PATCH /api/projects/\[id\]/archive endpoint using Express.js to update project status to 'archived' in the project\_management\_endpoint node, ensuring soft delete without data loss. - (S) (1 hours)\[BD\]
+        
+    -   Create database schema update to add 'archived' boolean flag to projects collection with default false using MongoDB schema migration in the project\_management\_endpoint node. - (S) (1 hours)\[DBA\]
+        
+    -   Implement backend logic in project\_management\_endpoint node to filter out archived projects from active project queries using MongoDB query filters and update API responses accordingly. - (M) (1.5 hours)\[BD\]
+        
+-   **Suggest Next Steps and Actions on Summary Dashboard:** As a user on the Project Summary Dashboard, I want to see suggested next steps such as revisiting phases, starting a new project, or exploring collaboration features so that I can continue progressing or plan future work.**(5 hours)** - The dashboard displays contextual suggestions based on project status. - Suggestions include buttons or links to revisit completed phases. - Suggestions include options to start a new project. - Suggestions mention upcoming collaboration features as informational prompts. - Suggestions are visually distinct and easy to interact with.
+    
+    -   Design GET /api/next-steps endpoint to fetch suggested actions using REST API with caching headers in the project\_summary\_next\_steps\_endpoint node for efficient retrieval of next step suggestions. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement logic in the project\_summary\_next\_steps\_endpoint node to generate personalized next step suggestions based on user project status and history using server-side business rules and data aggregation. - (M) (2.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for the GET /api/next-steps endpoint using Jest and Supertest in the project\_summary\_next\_steps\_endpoint node to ensure reliability and correct suggestion outputs. - (S) (1 hours)\[QA\]
+        
+-   **Display Project Summary Dashboard After Completion:** As a user, I want to see a clear summary dashboard after completing and exporting my brand project so that I can review all key brand assets and deliverables in one place.**(7.5 hours)** - Upon project completion and export, the user is redirected to a summary dashboard. - The dashboard displays all key deliverables including brand strategy documents, identity briefs, positioning statements, and visual assets. - Each deliverable is clickable to view or download. - The dashboard layout is clean, intuitive, and responsive.
+    
+    -   Design REST GET /api/project-summary endpoint to aggregate key brand assets and deliverables using MongoDB aggregation in the project\_summary\_dashboard\_endpoint node - (M) (3 hours)\[BD\]
+        
+    -   Implement data serialization and caching with Redis for project summary response to optimize load times in the project\_summary\_dashboard\_endpoint node - (S) (1.5 hours)\[BD\]
+        
+    -   Create JSON schema validation middleware for project summary API response using Joi or Zod in the project\_summary\_dashboard\_endpoint node - (S) (1.5 hours)\[BD\]
+        
+    -   Write integration tests for project summary endpoint using Jest and Supertest to verify correct aggregation and response format in the project\_summary\_dashboard\_endpoint node - (M) (1.5 hours)\[QA\]
+        
+-   **Provide Options to Duplicate or Archive Project:** As a user, I want to be able to duplicate my completed project to create a new version or archive it to keep my workspace organized.**(8 hours)** - User can click a 'Duplicate Project' button to create a copy of the current project with all data. - User can click an 'Archive Project' button to move the project to an archived state. - Archived projects are not shown in the main active projects list but can be accessed via an archive view. - Confirmation prompts are shown before duplication or archiving actions.
+    
+    -   Design and implement POST /projects/duplicate API endpoint using Express.js in the project\_management\_endpoint node to clone project data including metadata and associated resources with validation and error handling. - (M) (3 hours)\[BD\]
+        
+    -   Create POST /projects/archive API endpoint in the project\_management\_endpoint node to mark projects as archived with soft delete flag and update project status, ensuring idempotent operation and audit logging. - (S) (2 hours)\[BD\]
+        
+    -   Implement integration tests for duplicate and archive project endpoints using Jest and Supertest in the project\_management\_endpoint node to verify correct data cloning, status updates, and error handling. - (S) (2 hours)\[QA\]
+        
+    -   Document API usage for project duplication and archiving with example requests/responses and error codes in the project\_management\_endpoint node using OpenAPI spec for developer reference. - (XS) (1 hours)\[TW\]
+        
+-   **Enable Export of Project Summary Dashboard as PDF or Word Document:** As a user, I want to export the entire project summary dashboard as a polished PDF or Word document so that I can share or archive a comprehensive overview of my brand project.**(8 hours)** - User can click an 'Export Summary' button on the project summary dashboard. - The export generates a well-formatted PDF or Word document including all key deliverables and summary information. - Exported documents maintain branding and formatting consistency. - Export process handles large projects efficiently without errors. - User receives confirmation upon successful export.
+    
+    -   Design REST API POST /export/summary endpoint using Express.js to accept export format (PDF/Word) and user project ID in the project\_summary\_export\_endpoint node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement HTML template generation for project summary using server-side templating (e.g. EJS or Handlebars) with dynamic data injection in the project\_summary\_export\_endpoint node. - (M) (3 hours)\[BD\]
+        
+    -   Integrate Puppeteer to convert generated HTML templates to PDF and use docx library for Word export in the project\_summary\_export\_endpoint node with format-based branching logic. - (M) (2.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for export endpoint covering HTML generation, PDF/Word conversion, and error handling in the project\_summary\_export\_endpoint node using Jest or Mocha. - (S) (1 hours)\[QA\]\[BD\]
+        
+-   **Suggest Next Steps After Project Completion:** As a user, I want to see suggested next steps after completing my project so that I can easily decide what to do next, such as revisiting phases, starting a new project, or exploring upcoming features like collaboration.**(8 hours)** - After project completion, the dashboard displays a section with suggested next steps. - Suggestions include revisiting completed phases for updates, starting a new project, duplicating the current project, or exploring future collaboration features. - Suggestions are clear, actionable, and contextually relevant. - Suggestions can be dismissed or hidden by the user.
+    
+    -   Design GET /next-steps API endpoint using Express Router with JSON response schema for next step suggestions in the project\_summary\_next\_steps\_endpoint node - (S) (2 hours)\[BD\]
+        
+    -   Implement logic in the project\_summary\_next\_steps\_endpoint node to generate dynamic next step suggestions based on project status, including revisiting phases, new project start, and feature exploration - (M) (4 hours)\[BD\]
+        
+    -   Write unit and integration tests for GET /next-steps endpoint using Jest and Supertest in the project\_summary\_next\_steps\_endpoint node to ensure correct next step suggestions and error handling - (S) (2 hours)\[QA\]
+        
+
+### **Milestone 9: Implementation of optional notifications and reminders including settings, triggers, and delivery to keep users engaged and informed without being intrusive.**
+
+_Estimated 67.5 hours_
+
+-   **User can opt in/out of email notifications for progress reminders:** As a user, I want to enable or disable email notifications for progress reminders so that I can stay informed about my project status without unwanted emails.**(9 hours)** - User can find email notification settings in the Notification Settings page/modal. - User can toggle email notifications for progress reminders on or off. - Changes are saved and persist across sessions. - User receives email notifications only if enabled.
+    
+    -   Design MongoDB schema for user email notification preferences with fields for userId, projectId, and emailOptIn boolean in the notification\_preferences\_schema node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement RESTful PUT /api/notification-preferences route in notification\_preferences\_endpoint node to update user email opt-in status, validating userId and projectId in request body. - (M) (3 hours)\[BD\]
+        
+    -   Create React toggle switch component for email notifications using useState and onChange handler, calling PUT /api/notification-preferences in notification\_preferences\_endpoint node. - (S) (1.5 hours)\[FD\]
+        
+    -   Write integration tests for notification preference updates using Jest and Supertest to cover PUT /api/notification-preferences in notification\_preferences\_endpoint node. - (M) (3 hours)\[QA\]
+        
+-   **User can opt in/out of in-app notifications for phase completions:** As a user, I want to enable or disable in-app notifications for phase completions so that I can receive timely alerts within the app about my progress.**(5 hours)** - User can find in-app notification settings in the Notification Settings page/modal. - User can toggle in-app notifications for phase completions on or off. - Changes are saved and persist across sessions. - User receives in-app notifications only if enabled.
+    
+    -   Design and update notification\_preferences\_schema to include a boolean field for in-app phase completion notifications per user in the notification\_preferences\_schema node using schema migration. - (S) (1 hours)\[BD\]
+        
+    -   Implement REST PUT /user/notifications/preferences endpoint to update in-app phase completion notification opt-in/out in the notification\_preferences\_endpoint node with validation and auth checks. - (M) (2 hours)\[BD\]
+        
+    -   Create React toggle switch component for in-app notification opt-in/out using useState and onChange handlers integrated with notification\_preferences\_endpoint in the frontend UI. - (S) (1 hours)\[FD\]
+        
+    -   Write integration tests for notification preference toggle API and schema updates using Jest and Supertest in the notification\_preferences\_endpoint node to ensure correct opt-in/out behavior. - (S) (1 hours)\[QA\]
+        
+-   **User can save notification preferences per project:** As a user, I want my notification preferences to be saved and applied per project so that I can customize alerts based on each brand project I am working on.**(7 hours)** - Notification preferences are saved uniquely for each project. - When switching projects, the app loads the correct notification settings. - Changes to notification settings affect only the current project. - Preferences persist across user sessions and devices.
+    
+    -   Design MongoDB schema with fields for userId, projectId, and notification settings (email, in-app toggles) using Mongoose schema in the notification\_preferences\_schema node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement RESTful POST and PUT endpoints for saving/updating notification preferences per project using Express.js in the notification\_preferences\_endpoint node, validating input with Joi. - (M) (3 hours)\[BD\]
+        
+    -   Create GET endpoint to fetch user notification preferences by projectId with authentication middleware in the notification\_preferences\_endpoint node, returning JSON for frontend consumption. - (S) (1.5 hours)\[BD\]
+        
+    -   Write integration tests for notification preferences endpoints covering create, update, and fetch scenarios using Jest and Supertest in the notification\_preferences\_endpoint node. - (S) (1 hours)\[QA\]
+        
+-   **User can configure notification preferences for inactivity reminders:** As a user, I want to enable or disable notifications reminding me of inactivity so that I can choose whether to receive nudges to continue my work.**(3.5 hours)** - User can find inactivity reminder notification settings in the Notification Settings page/modal. - User can toggle inactivity reminders on or off for both email and in-app notifications. - Changes are saved and persist across sessions. - Notifications are sent only if enabled.
+    
+    -   Design MongoDB schema for user notification preferences including inactivity reminder toggles in the notification\_preferences\_schema node using Mongoose with fields for userId, projectId, and boolean flags for email and in-app notifications. - (S) (1 hours)\[BD\]
+        
+    -   Implement RESTful PUT /preferences/inactivity endpoint in notification\_preferences\_endpoint node using Express.js to update user inactivity reminder settings with JWT auth and validate input with Joi middleware. - (M) (1.5 hours)\[BD\]
+        
+    -   Create React form component with controlled inputs for toggling inactivity email and in-app notifications using useState and useEffect hooks in notification\_preferences\_endpoint node, integrating API calls with Axios. - (S) (1 hours)\[FD\]
+        
+-   **User Can Enable or Disable Notifications:** As a user, I want to be able to enable or disable notifications globally in the app settings so that I can control whether I receive any email or in-app notifications.**(10 hours)** - User can find a notifications toggle in the app settings. - Toggling off disables all notifications. - Toggling on enables notifications with default preferences. - Changes persist across sessions.
+    
+    -   Design and implement a RESTful PUT /notifications/settings endpoint to toggle global notification enable/disable flags using JSON Web Tokens for user auth in the notification\_settings\_endpoint node. - (M) (3 hours)\[BD\]
+        
+    -   Create MongoDB schema updates to add a global notificationsEnabled boolean field in the notification\_preferences\_schema node, ensuring default true and indexing for quick user preference retrieval. - (S) (1.5 hours)\[DBA\]\[BD\]
+        
+    -   Implement backend logic in notification\_settings\_endpoint node to update user global notification status and cascade disable flags to notification\_preferences\_endpoint for email and in-app toggles. - (M) (3.5 hours)\[BD\]
+        
+    -   Write integration tests for PUT /notifications/settings endpoint covering auth, validation, and cascading updates in notification\_settings\_endpoint and notification\_preferences\_endpoint nodes using Jest and Supertest. - (S) (2 hours)\[QA\]
+        
+-   **User Can Configure Notification Preferences:** As a user, I want to configure which types of notifications I receive (e.g., progress reminders, phase completion alerts, inactivity nudges) so that I only get relevant notifications.**(7 hours)** - User can select notification categories in settings. - User can save preferences and they persist. - Notifications sent respect user preferences. - UI clearly explains each notification type.
+    
+    -   Design MongoDB schema with fields for userId, notification types (progress, phase completion, inactivity), and email/in-app toggles in the notification\_preferences\_schema node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement REST API POST/GET endpoints for fetching and updating user notification preferences using Express.js in the notification\_preferences\_endpoint node. - (M) (3 hours)\[BD\]
+        
+    -   Create validation middleware for notification preference payloads using Joi schema validation in the notification\_preferences\_endpoint node to ensure data integrity. - (S) (1.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for notification preferences API endpoints using Jest and Supertest in the notification\_preferences\_endpoint node. - (S) (1 hours)\[QA\]
+        
+-   **Send Email Notifications for Key Events:** As a user, I want to receive email notifications for key events like phase completions and inactivity reminders so that I stay informed even when not actively using the app.**(19 hours)** - Email notifications are sent for phase completion. - Email notifications are sent after defined inactivity periods. - Emails respect user preferences. - Emails contain clear, actionable information. - Emails include unsubscribe links.
+    
+    -   Design MongoDB schema for user email notification preferences including event toggles in the notification preferences schema node using Mongoose models and validation. - (S) (2 hours)\[BD\]
+        
+    -   Implement REST API endpoints for CRUD operations on notification preferences in the notification preferences endpoint node using Express.js with JWT auth middleware. - (M) (3 hours)\[BD\]
+        
+    -   Create service to send templated email notifications for phase completions and inactivity reminders using Nodemailer in the email notification service node with retry logic. - (M) (4 hours)\[BD\]
+        
+    -   Integrate notification preferences check before sending emails in the email notification service node using async hooks to query notification preferences schema. - (M) (3 hours)\[BD\]
+        
+    -   Develop scheduled job using Celery to trigger inactivity reminder emails after user inactivity threshold in the email notification service node with Redis as broker. - (L) (5 hours)\[BD\]\[DE\]
+        
+    -   Write unit and integration tests for notification preferences API and email sending logic using Jest and Supertest in notification preferences endpoint and email notification service nodes. - (S) (2 hours)\[QA\]\[BD\]
+        
+-   **Send In-App Notifications for Progress and Alerts:** As a user, I want to receive in-app notifications for progress reminders and phase completion alerts so that I get timely updates while using the app.**(7 hours)** - In-app notifications appear as banners or modals. - Notifications respect user preferences. - Notifications are dismissible. - Notifications do not interrupt critical workflows. - Notifications appear promptly after events.
+    
+    -   Design MongoDB schema for user notification preferences including in-app toggles for progress and alerts in the notification preferences schema node using Mongoose models and validation. - (S) (1 hours)\[BD\]
+        
+    -   Implement REST API endpoints for CRUD operations on user notification preferences in the notification preferences endpoint node using Express.js with JWT auth middleware and validation. - (M) (2.5 hours)\[BD\]
+        
+    -   Develop in-app notification dispatch logic in the in app notification service node using event-driven triggers and Redis pub/sub to send progress reminders and phase completion alerts respecting user prefs. - (M) (2.5 hours)\[BD\]
+        
+    -   Write integration tests for notification preference endpoints and in-app notification dispatch using Jest and Supertest in notification preferences endpoint and in app notification service nodes. - (S) (1 hours)\[QA\]
+        
+
+### **Milestone 10: Controls for phase navigation enforcing linear progression and versioning with autosave and revert capabilities to ensure data integrity and smooth iteration.**
+
+_Estimated 80.5 hours_
+
+-   **Enforce Linear Phase Progression:** As a user, I want to be guided through the brand-building journey in a mostly linear sequence so that I cannot skip ahead to phases that are not yet unlocked or completed, ensuring a clear and structured workflow.**(9.5 hours)** - Users can only access the current active phase or any previously completed phases. - Attempting to access a future phase before completing prior phases is blocked with a clear message. - Navigation UI reflects locked phases visually (e.g., disabled or greyed out). - The system prevents URL manipulation to access locked phases.
+    
+    -   Design and implement a REST API GET /phase-status endpoint to fetch current user phase progress and unlocked phases using JWT auth in the phase\_navigation\_control\_endpoint node. - (S) (2 hours)\[BD\]
+        
+    -   Create middleware in the phase\_navigation\_control\_endpoint node to validate user phase access on each navigation request, blocking access to locked phases and allowing backward navigation only to completed phases. - (M) (3 hours)\[BD\]
+        
+    -   Develop a PATCH /phase-progress endpoint in the phase\_navigation\_control\_endpoint node to update user phase completion status atomically with concurrency control using optimistic locking. - (M) (3 hours)\[BD\]
+        
+    -   Write integration tests using Jest and Supertest for phase progression enforcement endpoints in the phase\_navigation\_control\_endpoint node, covering access control and state updates. - (S) (1.5 hours)\[QA\]
+        
+-   **Allow Backward Navigation Within Completed Phases:** As a user, I want to be able to navigate back to any previously completed phase to review or edit my inputs without restrictions, so I can refine my brand-building work as needed.**(10 hours)** - Users can freely navigate to any phase marked as completed. - Changes made in previous phases are saved and reflected in subsequent phases. - Navigation UI clearly indicates which phases are completed and editable. - No ability to jump forward from these backward navigations.
+    
+    -   Design and implement GET /phases/completed endpoint to fetch list of completed phases with timestamps using Express.js router in the phase\_navigation\_control\_endpoint node for backward navigation control. - (S) (1.5 hours)\[BD\]
+        
+    -   Create middleware in phase\_navigation\_control\_endpoint node to validate user phase access rights allowing navigation only to completed phases using JWT token claims and session data. - (M) (3 hours)\[BD\]\[SS\]
+        
+    -   Implement PUT /phases/:id/navigation endpoint in phase\_navigation\_control\_endpoint node to update user progress and allow backward navigation to any completed phase with proper state management. - (M) (3 hours)\[BD\]
+        
+    -   Write integration tests using Jest and Supertest for phase\_navigation\_control\_endpoint node to verify backward navigation enforcement and correct phase access control logic. - (S) (2.5 hours)\[QA\]
+        
+-   **Prevent URL Manipulation to Access Locked Phases:** As a user, I want the system to prevent me from accessing locked phases by manually changing the URL or using browser navigation tricks, ensuring the linear progression is enforced securely.**(11 hours)** - Backend or frontend routing logic blocks access to locked phases. - Users attempting URL manipulation are redirected to the current active phase with an explanatory message. - Security tests confirm no unauthorized access to locked phases. - Logs capture attempts to access locked phases for monitoring.
+    
+    -   Implement middleware in the phase\_navigation\_control\_endpoint node to validate user phase access based on session state, blocking requests to locked phases with HTTP 403 errors using Express.js middleware patterns. - (M) (3 hours)\[BD\]
+        
+    -   Create API endpoint in the phase\_navigation\_control\_endpoint node to fetch user progress and allowed phases using JWT token validation and MongoDB queries for phase completion status. - (S) (2 hours)\[BD\]
+        
+    -   Develop server-side redirect logic in the phase\_navigation\_control\_endpoint node to reroute users attempting to access locked phases to the last completed phase using Express.js response redirects. - (S) (2 hours)\[BD\]
+        
+    -   Write integration tests in the phase\_navigation\_control\_endpoint node using Jest and Supertest to verify locked phase access is denied and redirects function correctly for unauthorized URL manipulations. - (M) (4 hours)\[QA\]
+        
+-   **Visual Indicators for Phase Completion and Lock Status:** As a user, I want clear visual indicators on the navigation UI that show which phases are completed, currently active, or locked, so I can easily understand my progress and navigation options.**(5 hours)** - Completed phases are visually distinct (e.g., checkmarks or color changes). - The current active phase is highlighted. - Locked phases are greyed out or disabled. - Tooltips or labels explain the status when hovered or tapped.
+    
+    -   Design and implement a REST GET /phase-status endpoint returning JSON with phase completion and lock status using Express.js in the phase\_navigation\_control\_endpoint node. - (S) (1 hours)\[BD\]
+        
+    -   Create middleware in phase\_navigation\_control\_endpoint node to enforce linear phase progression and update phase status flags for frontend consumption using Node.js Express middleware. - (M) (2.5 hours)\[BD\]
+        
+    -   Develop unit and integration tests for phase status endpoint and middleware using Jest and Supertest in the phase\_navigation\_control\_endpoint node to ensure accurate phase completion and lock status. - (S) (1.5 hours)\[QA\]
+        
+-   **Implement Autosave Functionality After Each Phase Step:** As a user, I want the app to automatically save my progress after completing each step within a phase so that I don't lose any data and can continue seamlessly later.**(12 hours)** - Autosave triggers automatically after each phase step completion. - Autosave stores the current state of the user's project data in the backend. - Autosave operation does not interrupt the user experience or cause noticeable delays. - Autosave handles network failures gracefully and retries saving when possible.
+    
+    -   Design REST API POST /autosave endpoint to receive phase step data and user context, validating payload schema with JSON Schema in the autosave\_service node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement data persistence logic using MongoDB upsert operations to save or update user progress per phase step in the autosave\_service node. - (M) (3 hours)\[BD\]\[DBA\]
+        
+    -   Create autosave client integration using fetch API with debounce logic to call POST /autosave after each phase step completion in the autosave\_service node. - (M) (3 hours)\[FSD\]
+        
+    -   Develop automated tests using Jest and Supertest to verify autosave API endpoint correctness and data integrity in the autosave\_service node. - (S) (1.5 hours)\[QA\]
+        
+    -   Configure logging and error handling middleware for autosave failures with retry logic and alerting in the autosave\_service node using Node.js middleware patterns. - (M) (3 hours)\[BD\]
+        
+-   **Store Versioned Project Data in Backend:** As a user, I want each autosave to create a versioned snapshot of my project data in the backend so that I can track changes over time and revert if needed.**(11 hours)** - Each autosave creates a new version entry in the backend database. - Version entries include timestamp, phase, and step metadata. - Version data is stored securely and efficiently. - The system supports retrieval of any previous version for viewing or reverting.
+    
+    -   Design MongoDB schema for versioned project snapshots with fields for projectId, versionNumber, timestamp, userId, and dataPayload in the versioning\_service node - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /versions endpoint to save autosave snapshots with validation and version increment logic using Express.js in the versioning\_service node - (M) (3 hours)\[BD\]
+        
+    -   Create GET /versions/:projectId endpoint to retrieve version history with pagination and metadata in the versioning\_service node - (S) (2 hours)\[BD\]
+        
+    -   Develop revert version logic to replace current project data with selected snapshot using atomic update operations in the versioning\_service node - (M) (3 hours)\[BD\]
+        
+-   **Provide UI for Viewing and Reverting Versions in Dashboard:** As a user, I want to view a list of saved versions of my project and revert to any previous version from the dashboard so that I can easily manage my project history and undo unwanted changes.**(11 hours)** - The dashboard displays a chronological list of saved versions with timestamps and phase/step info. - Users can select any version to preview its content. - Users can revert the project to a selected version, which updates the current project state. - Reverting prompts a confirmation to prevent accidental overwrites. - The UI is responsive and accessible.
+    
+    -   Design REST GET /versions API in the version\_history\_endpoint node to fetch paginated list of saved project versions with metadata (timestamp, author, summary) using Express.js and MongoDB aggregation. - (M) (3 hours)\[BD\]
+        
+    -   Implement REST POST /versions/revert endpoint in the version\_history\_endpoint node to revert project state to selected version using atomic update and version validation logic. - (M) (3 hours)\[BD\]
+        
+    -   Create version list UI component using React useEffect to fetch GET /versions and display version cards with revert buttons in the Dashboard node integrating with version\_history\_endpoint node. - (S) (1.5 hours)\[FD\]
+        
+    -   Add revert version confirmation modal using React state and context API in the Dashboard node to confirm user action before calling POST /versions/revert in version\_history\_endpoint node. - (S) (1.5 hours)\[FD\]
+        
+    -   Write integration tests for GET /versions and POST /versions/revert endpoints using Jest and Supertest in the version\_history\_endpoint node to ensure correct version retrieval and revert behavior. - (S) (1.5 hours)\[QA\]
+        
+    -   Deploy updated version\_history\_endpoint node with new version APIs and rollback support using CI/CD pipeline and monitor logs for errors post-deployment. - (XS) (0.5 hours)\[DO\]
+        
+-   **Implement Backend API for Version Management:** As a developer, I need backend APIs to support creating, retrieving, and reverting project versions so that the frontend can interact with versioned data efficiently and securely.**(11 hours)** - API endpoints exist for creating new versions, listing versions, retrieving specific versions, and reverting to a version. - APIs validate user permissions and project ownership. - APIs handle errors gracefully and provide meaningful responses. - API performance is optimized for quick version retrieval and storage.
+    
+    -   Design MongoDB schema for version documents with fields for projectId, versionData, createdAt, and userId in the version\_management\_api node. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement POST /versions endpoint using Express.js with JWT auth middleware to create new project versions in the version\_management\_api node. - (M) (3 hours)\[BD\]
+        
+    -   Create GET /versions/:id endpoint with permission checks to retrieve specific version data securely in the version\_management\_api node. - (M) (3 hours)\[BD\]
+        
+    -   Develop POST /versions/:id/revert endpoint to revert project to a previous version with transaction safety in the version\_management\_api node. - (L) (3.5 hours)\[BD\]
+        
+
+### **Milestone 11: User dashboard for project selection, creation, and management to facilitate easy access to brand building projects.**
+
+_Estimated 22 hours_
+
+-   **Project List Display and Selection:** As a user, I want to see a list of my existing brand building projects on the dashboard so that I can easily select and continue working on any project.**(5 hours)** - The dashboard displays a list of all projects owned by the user. - Each project entry shows the project name, creation date, and last modified date. - The user can click on a project to open and continue working on it. - The list updates dynamically when new projects are added or deleted.
+    
+    -   Implement GET /api/projects endpoint using Express.js with pagination and user authentication in the project\_list\_endpoint node to fetch user-specific project metadata from project\_database node. - (M) (2 hours)\[BD\]
+        
+    -   Design MongoDB schema for projects collection with fields for project name, status, lastModified, and userId in the project\_database node to support efficient querying and display. - (S) (1 hours)\[DBA\]
+        
+    -   Create React component using useEffect to call GET /api/projects and useState to manage project list state in the project\_list\_endpoint node, rendering clickable project cards with metadata for dashboard display. - (M) (1.5 hours)\[FD\]
+        
+    -   Add onClick handler in project list React component to update selected project state and navigate to project detail view using React Router in the project\_list\_endpoint node. - (S) (0.5 hours)\[FD\]
+        
+-   **Create New Project Workflow:** As a user, I want to create a new brand building project from the dashboard so that I can start a new brand building process.**(10 hours)** - The dashboard has a clear 'Create New Project' button. - Clicking the button opens a form to enter basic project details (e.g., project name). - The form validates input and prevents duplicate project names. - Upon submission, a new project is created and added to the project list. - The user is redirected to the newly created project's first phase.
+    
+    -   Design MongoDB schema for brand building projects including phases, user inputs, and metadata in the project\_database node using Mongoose models with validation rules. - (M) (3 hours)\[BD\]
+        
+    -   Implement POST /api/projects endpoint with input validation and project initialization logic using Express.js and Joi in the project\_create\_endpoint node. - (M) (3 hours)\[BD\]
+        
+    -   Create React form component with React Hook Form and Yup validation for new project creation in the dashboard UI, integrating with POST /api/projects in the project\_create\_endpoint node. - (S) (2 hours)\[FD\]
+        
+    -   Write integration tests for project creation API endpoint using Jest and Supertest covering validation, database writes, and response codes in the project\_create\_endpoint and project\_database nodes. - (S) (2 hours)\[QA\]
+        
+-   **Project Phase Navigation:** As a user, I want to navigate to different phases of a selected project from the dashboard so that I can access specific brand building stages directly.**(2 hours)** - Each project entry on the dashboard shows links or buttons to access individual phases (Audience Research, Brand Strategy, etc.). - Clicking a phase link navigates the user to that phase's interface. - The navigation respects the linear progression but allows access to completed or current phases. - Disabled or locked phases are visually indicated if applicable.
+    
+    -   Design REST GET /projects/:projectId/phases endpoint with JWT auth middleware in the project\_phase\_navigation\_endpoint node to fetch phase list for a selected project with access control. - (S) (1 hours)\[BD\]
+        
+    -   Implement MongoDB query in project\_database node to retrieve phases by projectId with indexing on projectId for efficient navigation data retrieval. - (S) (0.5 hours)\[DBA\]
+        
+    -   Create React phase navigation component using useEffect to fetch phases from GET /projects/:projectId/phases in project\_phase\_navigation\_endpoint node and render clickable phase links. - (S) (0.5 hours)\[FD\]
+        
+-   **Project Search and Filtering:** As a user, I want to search and filter my projects on the dashboard so that I can quickly find specific projects when I have many.**(5 hours)** - The dashboard includes a search input to filter projects by name. - Users can filter projects by status (e.g., in-progress, completed). - The project list updates in real-time as search/filter criteria change. - Search and filter work together seamlessly.
+    
+    -   Design MongoDB schema for projects with fields for name, status, and metadata using Mongoose models in the project\_database node to support efficient search and filtering queries. - (S) (1 hours)\[BD\]
+        
+    -   Implement REST API GET /projects with query params for name and status filters using Express.js and MongoDB aggregation pipeline in the project\_search\_filter\_endpoint node for efficient project search. - (M) (2.5 hours)\[BD\]
+        
+    -   Create React search and filter form with controlled inputs for project name and status, debounced input handling, and fetch results from /projects API in the project\_search\_filter\_endpoint node. - (M) (1.5 hours)\[FD\]
+        
+
+### **Milestone 12: Documentation and deployment processes to support project delivery and release.**
+
+_Estimated 31 hours_
+
+-   **Setup Deployment Pipeline for Brand Builder App:** As a DevOps engineer, I want to set up a continuous integration and continuous deployment (CI/CD) pipeline so that the Brand Builder app can be automatically built, tested, and deployed to the hosting environment efficiently and reliably.**(10 hours)** - CI/CD pipeline triggers on code commits to main branch. - Automated build and test steps are included. - Successful builds are deployed to staging environment. - Deployment logs are accessible for monitoring. - Rollback mechanism is in place for failed deployments.
+    
+    -   Configure GitHub Actions workflow with triggers on push and pull\_request events, defining build, test, and deploy jobs using YAML in the ci\_cd\_microservice node. - (M) (3 hours)\[DE\]
+        
+    -   Create build and test job steps in GitHub Actions using Node.js setup, npm install, and test scripts with caching in the ci\_cd\_microservice node for efficient CI pipeline execution. - (S) (2 hours)\[DE\]
+        
+    -   Set up deployment job in GitHub Actions using environment secrets and SSH or cloud CLI commands to deploy app to hosting environment in the ci\_cd\_microservice node. - (M) (3 hours)\[DE\]
+        
+    -   Integrate GitHub Actions status checks with Slack webhook notifications and email alerts using GitHub API in the ci\_cd\_microservice node for real-time CI/CD pipeline monitoring. - (S) (2 hours)\[DE\]
+        
+-   **Implement Deployment Monitoring and Alerting:** As a system administrator, I want to implement monitoring and alerting for deployment status and health, so that issues can be detected and addressed promptly during the deployment process.**(6 hours)** - Deployment status is tracked and logged. - Alerts are sent on deployment failures or anomalies. - Monitoring dashboard is accessible to relevant team members. - Alerts include actionable information for quick resolution.
+    
+    -   Set up deployment status tracking API using REST endpoints with Express.js in the deployment\_monitoring\_service node to capture deployment start, success, and failure events. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement health check monitoring using periodic polling with Node.js timers and status aggregation logic in the deployment\_monitoring\_service node to detect deployment anomalies. - (M) (2 hours)\[BD\]
+        
+    -   Create alerting mechanism using email notifications via Nodemailer and webhook triggers for critical deployment failures in the deployment\_monitoring\_service node. - (M) (1.5 hours)\[BD\]
+        
+    -   Write unit and integration tests for deployment status APIs and alerting workflows using Jest and Supertest in the deployment\_monitoring\_service node to ensure reliability. - (S) (1 hours)\[QA\]\[BD\]
+        
+-   **Create User Documentation for Deployment Process:** As a technical writer, I want to create comprehensive user documentation that explains the deployment process, so that developers and stakeholders understand how the Brand Builder app is deployed and maintained.**(9 hours)** - Documentation covers CI/CD pipeline overview. - Includes steps for manual deployment if needed. - Explains rollback and recovery procedures. - Provides troubleshooting tips. - Documentation is accessible via project wiki or repository.
+    
+    -   Outline deployment process structure and key topics using Markdown format templates in the deployment\_documentation\_service node for consistent documentation framework. - (S) (1.5 hours)\[TW\]
+        
+    -   Draft detailed step-by-step deployment instructions including environment setup, CI/CD pipeline config, and rollback procedures in the deployment\_documentation\_service node using structured Markdown with code blocks. - (M) (3 hours)\[TW\]\[DE\]
+        
+    -   Integrate deployment documentation with version control system by creating a GitHub repo README.md and linking to deployment\_documentation\_service node docs for developer access and updates. - (M) (3 hours)\[TW\]\[DE\]
+        
+    -   Review and validate deployment documentation accuracy with deployment scripts and CI/CD logs in the deployment\_documentation\_service node; update docs based on feedback and testing results. - (S) (1.5 hours)\[TW\]\[DE\]
+        
+-   **Configure Environment-Specific Deployment Settings:** As a DevOps engineer, I want to configure environment-specific settings (e.g., staging, production) so that deployments can be tailored and managed appropriately for each environment.**(6 hours)** - Separate configuration files or environment variables for staging and production. - Deployment pipeline uses correct settings based on target environment. - Ability to switch environments without code changes. - Documentation updated to reflect environment configurations.
+    
+    -   Design environment config schema using JSON Schema for staging and production settings in the environment\_config\_service node to validate deployment parameters and ensure consistency across environments. - (S) (1.5 hours)\[DevOps\]
+        
+    -   Implement REST API endpoints GET/POST /env-config in the environment\_config\_service node using Express.js to retrieve and update environment-specific deployment settings with validation middleware. - (M) (3 hours)\[BE\]
+        
+    -   Create automated tests using Jest for environment config validation and API endpoint correctness in the environment\_config\_service node to ensure reliable deployment settings management. - (S) (1.5 hours)\[QA\]
+        
+
+### **Milestone 13: Ongoing maintenance and support to ensure project stability and user assistance.**
+
+_Estimated 47.5 hours_
+
+-   **Setup Maintenance & Support Dashboard:** As a user, I want a dedicated Maintenance & Support dashboard where I can view system status, open support tickets, and recent maintenance activities so that I can monitor and manage ongoing support tasks efficiently.**(13 hours)** - Dashboard displays real-time system health indicators. - List of open and resolved support tickets is visible. - Recent maintenance logs are accessible. - Dashboard updates dynamically without page reload.
+    
+    -   Design MongoDB schema for system status, support tickets, and maintenance logs with indexes for efficient queries in the maintenance\_support\_dashboard\_service node - (M) (3 hours)\[BD\]
+        
+    -   Implement REST API endpoints GET /status, GET /tickets, GET /maintenance in maintenance\_support\_dashboard\_service node using Express.js with JWT auth middleware - (M) (3 hours)\[BD\]
+        
+    -   Create dashboard data aggregation service using MongoDB aggregation pipelines to summarize open tickets and recent maintenance in maintenance\_support\_dashboard\_service node - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for API endpoints and data aggregation logic using Jest and Supertest in maintenance\_support\_dashboard\_service node - (S) (2 hours)\[QA\]
+        
+    -   Configure CI/CD pipeline to run tests and deploy maintenance\_support\_dashboard\_service node to staging environment using GitHub Actions - (S) (2 hours)\[DO\]
+        
+-   **Implement Support Ticketing System:** As a user, I want to create, view, update, and close support tickets related to brand building projects so that issues can be tracked and resolved systematically.**(14 hours)** - Users can create new support tickets with relevant details. - Tickets can be updated with comments and status changes. - Users can close tickets when resolved. - Tickets are linked to specific projects. - Notifications are sent on ticket status changes.
+    
+    -   Design MongoDB schema for tickets with fields: userId, projectId, status, priority, messages\[\], createdAt, updatedAt in the support\_ticket\_service node using Mongoose models. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement REST API endpoints POST /tickets, GET /tickets/:id, PUT /tickets/:id, PATCH /tickets/:id/close in the support\_ticket\_service node using Express.js with JWT auth middleware. - (M) (3.5 hours)\[BD\]
+        
+    -   Create ticket creation and update service methods with validation and error handling in the support\_ticket\_service node using Mongoose and Joi validation schemas. - (M) (3 hours)\[BD\]
+        
+    -   Integrate Redis caching for frequently accessed ticket queries with TTL in the support\_ticket\_service node using ioredis client to improve read performance. - (S) (1.5 hours)\[BD\]
+        
+    -   Implement Celery task queue integration for sending ticket status update notifications asynchronously in the support\_ticket\_service node using Redis broker. - (M) (3 hours)\[BD\]
+        
+    -   Write unit and integration tests for ticket CRUD operations and notification tasks using Jest and Supertest in the support\_ticket\_service node ensuring 90% coverage. - (S) (1.5 hours)\[QA\]
+        
+-   **System Health Monitoring and Alerts:** As a user, I want the system to monitor key backend services and send alerts for failures or performance degradation so that I can proactively address issues.**(11.5 hours)** - System monitors uptime and response times of critical services. - Alerts are generated for failures or threshold breaches. - Alerts are visible on the Maintenance dashboard. - Users receive email or in-app notifications for critical alerts.
+    
+    -   Set up health check endpoints using Express.js in the system\_health\_monitoring\_service node to monitor backend service status with /health and /metrics routes returning JSON status and performance metrics. - (S) (2 hours)\[BD\]
+        
+    -   Implement periodic service health polling using Node.js setInterval with HTTP requests to backend services in the system\_health\_monitoring\_service node, logging response times and error rates for monitoring. - (M) (3.5 hours)\[BD\]
+        
+    -   Create alerting logic in the system\_health\_monitoring\_service node using Node.js and Redis to trigger email/SMS alerts via external APIs when service health checks fail or degrade beyond thresholds. - (M) (4 hours)\[BD\]\[DE\]
+        
+    -   Develop dashboard API endpoints in the system\_health\_monitoring\_service node to expose aggregated health metrics and alert statuses via REST API for frontend consumption and monitoring visualization. - (S) (2 hours)\[BD\]
+        
+-   **Basic Maintenance Scheduling and Logs:** As a user, I want to schedule routine maintenance tasks and view logs of past maintenance activities so that I can plan and review system upkeep.**(9 hours)** - Users can create and edit maintenance schedules. - Scheduled tasks trigger notifications. - Logs of completed maintenance are stored and accessible. - Maintenance history is linked to relevant system components.
+    
+    -   Design MongoDB schema for maintenance tasks and logs with fields for task name, schedule (cron format), status, and timestamps in the maintenance\_scheduling\_service node - (S) (1.5 hours)\[BD\]
+        
+    -   Implement REST API endpoints POST /maintenance/tasks and GET /maintenance/logs with Express.js in the maintenance\_scheduling\_service node for scheduling tasks and retrieving logs - (M) (3 hours)\[BD\]
+        
+    -   Create Celery task worker to process scheduled maintenance jobs and update logs asynchronously using Redis as broker in the maintenance\_scheduling\_service node - (M) (3 hours)\[BD\]
+        
+    -   Develop API integration tests for maintenance scheduling and log retrieval endpoints using Jest and Supertest in the maintenance\_scheduling\_service node - (S) (1.5 hours)\[QA\]
+        
+
+### **Total Hours: 674**

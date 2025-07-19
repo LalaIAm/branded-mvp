@@ -1,0 +1,37 @@
+# Task ID: 19
+# Title: Build Project Summary Dashboard
+# Status: pending
+# Dependencies: 18
+# Priority: high
+# Description: Create a dedicated dashboard page that displays a comprehensive summary of all key brand assets and documents created for a project, serving as a final overview.
+# Details:
+Create a new route and React component for `/:projectId/summary`. This component will fetch the complete project data. It will display key assets visually: the final logo, the color palette, the mission statement, and key persona highlights. It will also feature prominent download links for each exportable document (e.g., 'Download Style Guide'), which will point to the export service endpoint.
+
+# Test Strategy:
+Test the component's rendering with a complete mock project data object to ensure all assets are displayed correctly. Verify that the download links are constructed with the correct URLs for the export API.
+
+# Subtasks:
+## 1. Create Route and Component for Project Summary Dashboard [pending]
+### Dependencies: None
+### Description: Set up a new route (/:projectId/summary) in the React application and implement a dedicated component to serve as the project summary dashboard.
+### Details:
+Configure React Router to recognize the new summary route. Scaffold a new React component that will render the dashboard UI for the project summary.
+
+## 2. Fetch and Aggregate Complete Project Data [pending]
+### Dependencies: 19.1
+### Description: Implement logic within the summary dashboard component to fetch all relevant project data, aggregating assets and documents needed for display.
+### Details:
+Use appropriate data fetching methods (e.g., useEffect with fetch/axios) to retrieve project data from the backend. Ensure all key assets (logo, palette, mission, personas, exportable documents) are included in the aggregated data object.
+
+## 3. Visually Display Key Brand Assets [pending]
+### Dependencies: 19.2
+### Description: Render the project's key brand assets in a visually organized manner, including the final logo, color palette, mission statement, and persona highlights.
+### Details:
+Design and implement UI sections for each asset type. Use appropriate components (e.g., image for logo, color swatches for palette, styled text for mission, cards for personas) to ensure a clear and attractive presentation.
+
+## 4. Add Download Links for Exportable Documents [pending]
+### Dependencies: 19.3
+### Description: Provide prominent download links for each exportable document, ensuring they point to the correct export service endpoints.
+### Details:
+For each exportable document in the project data, render a clearly labeled download button or link. Construct the download URLs to match the export API endpoints, and ensure accessibility and usability.
+

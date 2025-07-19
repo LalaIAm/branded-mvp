@@ -1,0 +1,31 @@
+# Task ID: 22
+# Title: Build UI for Viewing and Reverting Versions
+# Status: pending
+# Dependencies: 7, 21
+# Priority: low
+# Description: Create a UI where users can view a history of their project's saved versions and have the option to revert the project to a previous state.
+# Details:
+Backend: Create a `GET /api/projects/:id/versions` endpoint to list all saved versions and a `POST /api/projects/:id/revert/:versionId` endpoint to restore a version's data to the main project document. Frontend: In the project workspace, add a 'History' panel or button. This UI will list the saved versions with timestamps. Each version will have a 'Revert' button that, after a confirmation prompt, calls the revert API.
+
+# Test Strategy:
+Test the API endpoints for listing and reverting versions. Use Cypress to test the UI flow: opening the history panel, seeing the list of versions, and successfully reverting the project after confirming.
+
+# Subtasks:
+## 1. Design and Implement Version History UI [pending]
+### Dependencies: None
+### Description: Create a user interface component (e.g., a 'History' panel or button) within the project workspace that displays a list of all saved project versions, including relevant metadata such as timestamps.
+### Details:
+The UI should fetch version data from the backend and present it in a clear, chronological list. Each version entry should display its timestamp and any other relevant information to help users identify the desired version.
+
+## 2. Integrate Revert Functionality with Confirmation [pending]
+### Dependencies: 22.1
+### Description: Add a 'Revert' button to each version entry in the history UI, which, when clicked, prompts the user for confirmation and then calls the backend API to revert the project to the selected version.
+### Details:
+Ensure the confirmation prompt clearly communicates the consequences of reverting. After confirmation, trigger the appropriate API call and handle the response, updating the UI to reflect the reverted state if successful.
+
+## 3. Test Version History and Revert UI Flow [pending]
+### Dependencies: 22.2
+### Description: Develop and execute tests to verify that the version history is displayed correctly, the revert action works as intended, and the UI responds appropriately to success or failure.
+### Details:
+Use Cypress or a similar tool to automate UI tests: open the history panel, check the list of versions, perform a revert with confirmation, and validate that the project state updates as expected.
+

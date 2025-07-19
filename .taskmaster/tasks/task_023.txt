@@ -1,0 +1,49 @@
+# Task ID: 23
+# Title: Implement User Notification System
+# Status: pending
+# Dependencies: 2
+# Priority: medium
+# Description: Set up a system for sending optional in-app and email notifications for key events like phase completions or inactivity reminders to keep users engaged.
+# Details:
+Extend the `User` schema in MongoDB with a `notificationPreferences` object. Create a centralized `NotificationService` in the backend. This service will have methods like `sendPhaseCompletionEmail` or `createInAppAlert`. These methods will first check the user's preferences before proceeding. Use a library like `node-cron` to schedule a daily job that checks for inactive projects and triggers reminder notifications. Use Nodemailer or a similar service for email delivery.
+
+# Test Strategy:
+Unit test the logic of the `NotificationService`, mocking email sending and database calls. Write an integration test for the API endpoint that allows users to update their notification preferences.
+
+# Subtasks:
+## 1. Extend User Schema for Notification Preferences [pending]
+### Dependencies: None
+### Description: Modify the MongoDB User schema to include a 'notificationPreferences' object, allowing users to specify their preferences for in-app and email notifications for different event types.
+### Details:
+Add a 'notificationPreferences' field to the User schema. This object should store boolean or enum values for each notification type (e.g., phase completions, inactivity reminders) and delivery method (in-app, email). Ensure the schema is flexible for future notification types.
+
+## 2. NotificationService Backend Implementation [pending]
+### Dependencies: 23.1
+### Description: Develop a centralized NotificationService in the backend to handle notification logic, including checking user preferences and dispatching notifications.
+### Details:
+Implement methods such as 'sendPhaseCompletionEmail' and 'createInAppAlert' that first check the user's notificationPreferences before sending. The service should be modular to support both in-app and email notifications.
+
+## 3. In-App Notification Logic [pending]
+### Dependencies: 23.2
+### Description: Implement the logic for creating and storing in-app notifications, ensuring they are delivered to users based on their preferences.
+### Details:
+Create a Notifications collection in MongoDB to store individual notifications. Implement logic to create a notification document when triggered, and ensure users can mark notifications as read. Integrate with WebSocket or polling for real-time delivery if required.
+
+## 4. Email Notification Logic (Nodemailer) [pending]
+### Dependencies: 23.2
+### Description: Integrate Nodemailer to send email notifications, respecting user preferences and supporting templated messages for different notification types.
+### Details:
+Configure Nodemailer for email delivery. Implement email templates for each notification type. Ensure NotificationService checks preferences before sending and handles errors gracefully.
+
+## 5. Scheduled Jobs for Reminders (node-cron) [pending]
+### Dependencies: 23.2, 23.3, 23.4
+### Description: Set up scheduled jobs using node-cron to trigger reminder notifications (e.g., inactivity reminders) based on user and project activity.
+### Details:
+Use node-cron to schedule daily or periodic jobs that query for inactive users or projects and trigger notifications via NotificationService. Ensure jobs are efficient and scalable.
+
+## 6. API for Updating Preferences and Tests [pending]
+### Dependencies: 23.1, 23.2, 23.3, 23.4, 23.5
+### Description: Create API endpoints for users to update their notification preferences and implement unit/integration tests for the notification system.
+### Details:
+Develop RESTful endpoints for updating notificationPreferences in the User schema. Write unit tests for NotificationService logic (mocking email/database) and integration tests for the API endpoints.
+

@@ -1,0 +1,31 @@
+# Task ID: 10
+# Title: Implement Competitor Analysis API with Web Scraping
+# Status: pending
+# Dependencies: 6
+# Priority: medium
+# Description: Create an API that takes a list of competitor URLs, uses Puppeteer for basic web scraping, and then leverages OpenAI to summarize their positioning, tone, and offerings.
+# Details:
+Implement a `POST /api/projects/:id/competitors` endpoint. The backend service will iterate through the provided URLs. For each URL, it will launch a Puppeteer instance to scrape key text content from the page (e.g., from `<h1>`, `<p>`, and `<meta>` tags). This scraped text will be compiled and sent to the OpenAI API with a prompt asking for a summary of the competitor's brand strategy. The results will be saved to the project document.
+
+# Test Strategy:
+Integration tests should mock the Puppeteer scraping process to avoid network dependencies and flakiness. Mock the OpenAI API call. The test should focus on verifying that the service correctly processes a list of URLs and saves the structured summary data to the database.
+
+# Subtasks:
+## 1. Develop Web Scraping Module Using Puppeteer [pending]
+### Dependencies: None
+### Description: Implement a service that accepts a list of competitor URLs and uses Puppeteer to scrape key text content from each page, specifically targeting <h1>, <p>, and <meta> tags.
+### Details:
+The module should efficiently launch Puppeteer instances, extract relevant text content, and handle errors such as inaccessible pages or timeouts. Ensure the scraped data is structured for downstream processing.
+
+## 2. Integrate OpenAI Summarization for Competitor Insights [pending]
+### Dependencies: 10.1
+### Description: Send the compiled text content from each competitor's page to the OpenAI API with a prompt designed to summarize brand positioning, tone, and offerings.
+### Details:
+Design prompts that elicit concise summaries of each competitor's brand strategy. Parse and structure the OpenAI responses for consistent storage. Handle API rate limits and errors gracefully.
+
+## 3. Implement API Endpoint and Data Persistence [pending]
+### Dependencies: 10.2
+### Description: Create the POST /api/projects/:id/competitors endpoint that orchestrates the scraping and summarization workflow, then saves the structured competitor analysis results to the project document in the database.
+### Details:
+Ensure the endpoint validates input, manages asynchronous processing for multiple URLs, and updates the project document with the summarized competitor data. Write integration tests that mock Puppeteer and OpenAI calls to verify correct data flow and persistence.
+

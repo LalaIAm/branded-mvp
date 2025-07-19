@@ -1,0 +1,31 @@
+# Task ID: 16
+# Title: Build Logo Generator UI
+# Status: pending
+# Dependencies: 7, 15
+# Priority: medium
+# Description: Develop the UI for the logo generator, allowing users to input their criteria, view the AI-generated logo concepts, and select their preferred logo for the brand.
+# Details:
+Create a React component with a form for logo style, keywords, and other criteria. On submission, call the API and display a loading state. Render the generated images in a grid from the URLs returned by the API. Implement a selection mechanism that allows the user to click on a logo to designate it as the 'official' logo for the project, which updates the project state.
+
+# Test Strategy:
+Test the form submission and the display of generated images from mock URLs. Test the selection logic to ensure it correctly updates the application's state and makes the appropriate backend call to save the choice.
+
+# Subtasks:
+## 1. Design and Implement Logo Generator Input Form [pending]
+### Dependencies: None
+### Description: Create a React component that provides a form for users to input logo criteria such as style, keywords, and other preferences. Ensure the form is user-friendly and validates input before submission.
+### Details:
+The form should include fields for logo style (e.g., wordmark, abstract), brand name, and descriptive keywords. Use appropriate UI components (e.g., dropdowns, text fields) and provide clear labels and validation feedback. On submission, trigger a loading state and prepare the data for the API call.
+
+## 2. Integrate API and Display Generated Logos [pending]
+### Dependencies: 16.1
+### Description: Connect the input form to the AI Logo Generator API. On form submission, send the user’s criteria to the backend and display a loading indicator. Once the API returns logo image URLs, render them in a responsive grid layout.
+### Details:
+Handle the API call asynchronously. While waiting for the response, show a loading spinner or skeleton UI. After receiving the image URLs, display the logos in a grid using image components. Ensure the grid is responsive and visually appealing.
+
+## 3. Implement Logo Selection and State Update Mechanism [pending]
+### Dependencies: 16.2
+### Description: Allow users to select their preferred logo from the generated options. When a logo is selected, visually indicate the selection and update the project state accordingly, including making a backend call to save the chosen logo.
+### Details:
+Add click handlers to each logo image so users can select one. Highlight the selected logo with a border or overlay. On selection, update the application state and trigger an API call to save the chosen logo as the official project logo. Ensure the UI reflects the current selection and handles errors gracefully.
+

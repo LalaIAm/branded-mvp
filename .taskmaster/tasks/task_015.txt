@@ -1,0 +1,31 @@
+# Task ID: 15
+# Title: Implement AI Logo Generator API
+# Status: pending
+# Dependencies: 6
+# Priority: medium
+# Description: Create an API that uses the DALL-E 3 API to generate logo concepts based on user inputs such as style (e.g., wordmark, abstract), brand name, and descriptive keywords.
+# Details:
+Implement a `POST /api/projects/:id/logo-generator` endpoint. The backend service will construct a detailed prompt for the DALL-E 3 API from the user's inputs. The generated images should be uploaded to a cloud storage service (like Firebase Storage), and the public URLs of these images will be saved into the project document in MongoDB.
+
+# Test Strategy:
+Write an integration test for the endpoint that mocks both the DALL-E 3 API call and the cloud storage upload. The test should verify that a URL is correctly saved to the project's data.
+
+# Subtasks:
+## 1. Design API Endpoint and Prompt Construction [pending]
+### Dependencies: None
+### Description: Define the POST /api/projects/:id/logo-generator endpoint and implement logic to construct a detailed prompt for DALL-E 3 based on user inputs (style, brand name, keywords).
+### Details:
+Specify the request and response schema for the endpoint. Develop a function that takes user inputs and generates a prompt optimized for logo creation with DALL-E 3. Ensure prompt flexibility for different logo styles (e.g., wordmark, abstract).
+
+## 2. Integrate DALL-E 3 API and Cloud Storage [pending]
+### Dependencies: 15.1
+### Description: Implement backend service to call the DALL-E 3 API with the constructed prompt, handle the image response, and upload the generated image to cloud storage (e.g., Firebase Storage).
+### Details:
+Use the OpenAI API key securely to access DALL-E 3. Parse the API response to obtain the image URL or binary data. Upload the image to the chosen cloud storage and retrieve the public URL for later use.
+
+## 3. Save Image URLs and Write Integration Tests [pending]
+### Dependencies: 15.2
+### Description: Save the public image URLs to the project document in MongoDB and implement integration tests that mock the DALL-E 3 API and cloud storage upload.
+### Details:
+Update the project document with the new logo image URLs. Write integration tests to verify that the endpoint correctly saves the URL, mocking external dependencies for reliable testing.
+

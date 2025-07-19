@@ -1,0 +1,49 @@
+# Task ID: 6
+# Title: Create API for Project CRUD Operations
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Implement backend RESTful API endpoints for creating, reading, updating, and deleting brand projects. All project data should be associated with the authenticated user.
+# Details:
+Define a `Project` schema in MongoDB. It should reference a `userId` and contain fields for `projectName`, timestamps, and nested objects for each phase's data (e.g., `audienceResearch`, `brandStrategy`). Implement the following protected endpoints: `POST /api/projects`, `GET /api/projects`, `GET /api/projects/:id`, `PUT /api/projects/:id`, and `DELETE /api/projects/:id`. Ensure all queries are scoped to the `userId` from the JWT middleware.
+
+# Test Strategy:
+Write integration tests for all CRUD endpoints. Key tests should verify that a user can only access their own projects and receives a 403 or 404 error when attempting to access projects belonging to other users.
+
+# Subtasks:
+## 1. Define Project Schema/Model [pending]
+### Dependencies: None
+### Description: Design and implement the MongoDB schema for the Project entity, including fields for userId, projectName, timestamps, and nested objects for each project phase (e.g., audienceResearch, brandStrategy). Ensure the schema supports efficient querying and future scalability.
+### Details:
+Follow MongoDB schema design best practices such as embedding nested phase data and referencing userId. Add appropriate indexes for userId and projectName to optimize queries.
+
+## 2. Implement Create Project Endpoint [pending]
+### Dependencies: 6.1
+### Description: Develop the POST /api/projects endpoint to allow authenticated users to create new projects. Ensure the created project is associated with the userId from the JWT.
+### Details:
+Validate request body, create a new project document in MongoDB, and return the created project. Handle errors for invalid input or database issues.
+
+## 3. Implement Read/List Projects Endpoint [pending]
+### Dependencies: 6.1
+### Description: Develop the GET /api/projects and GET /api/projects/:id endpoints to allow users to list all their projects or retrieve a specific project by ID. Ensure only projects belonging to the authenticated user are accessible.
+### Details:
+Query the database for projects where userId matches the authenticated user. Return 404 or 403 if the project does not exist or does not belong to the user.
+
+## 4. Implement Update Project Endpoint [pending]
+### Dependencies: 6.1, 6.3
+### Description: Develop the PUT /api/projects/:id endpoint to allow users to update their own projects. Ensure only the owner can update the project and validate input data.
+### Details:
+Check project ownership before updating. Validate and sanitize input. Update the project document and return the updated project or appropriate error.
+
+## 5. Implement Delete Project Endpoint [pending]
+### Dependencies: 6.1, 6.3
+### Description: Develop the DELETE /api/projects/:id endpoint to allow users to delete their own projects. Ensure only the owner can delete the project.
+### Details:
+Verify project ownership before deletion. Remove the project document from MongoDB and return a success response or appropriate error.
+
+## 6. Enforce Access Control and User Scoping [pending]
+### Dependencies: 6.2, 6.3, 6.4, 6.5
+### Description: Integrate access control logic into all project endpoints to ensure only authenticated users can access their own projects. Use the userId from the JWT for scoping.
+### Details:
+Apply JWT middleware to all endpoints. For each request, ensure queries and mutations are scoped to the authenticated user's userId. Return 403 or 404 errors for unauthorized access attempts.
+
